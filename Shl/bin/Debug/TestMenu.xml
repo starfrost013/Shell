@@ -1,0 +1,23 @@
+<ShellXML>
+
+	<Var name="a" value="5"></Var>
+	<Var name="b" value="h"></Var>
+	<Var name="c" value="hc"></Var>
+	<Var name="d" value="9123.139213"></Var>
+	<Var name="test" type="int" value="2"></Var>
+	<Var name="kdadhs" value="dkasjdhj"></Var>
+	<Var name="thisisavariable" type="int" value="2"></Var>
+	<Var name="spaces allowed too!" type="int" value="81387"></Var>
+	<Var name="and_special_characters☺☻♦☻☺☻♦" type="int" value="81923"></Var>
+	<Var name="Oh crap" type="string" value="hello"></Var>
+	<Var name="Fadf" type="char" value="C"></Var>
+	<Var name="Fadass" type="double" value="68.12"></Var>
+	<!--<Var name="float" type="float" value="5.4f"></Var>
+	<Var name="float" type="f2" value="0.5491f"></Var>
+	-->
+	<Var name="c" type="int" value="1823"></Var>
+	<Var name="a6" type="bool" value="true"></Var>
+	<Var name="a²" value="false"></Var>
+	<!--<Var name="NO type test." value="82147237"> </Var>-->
+	
+</ShellXML>

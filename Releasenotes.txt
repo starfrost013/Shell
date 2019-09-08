@@ -1,0 +1,133 @@
+ShellCore+ShellUI+Shl
+
+Release notes
+
+Version 1.0 - 5.0
+Version 5.5 / ShellUI 0.4.1
+
+- Changed all functions using arrays to use collections - int[] is now List<int>, etc. 
+- Fixed bug in ExecuteFileEx
+- Updated test application to Version 1.6 to reflect the changes in ShellCore and ShellUI Version 5.5
+- Fixed variable parsing bugs
+- Removed extraneous loops in shellui 
+
+
+Version 5.0 / ShellUI 0.4.0
+- Added System functions
+	public void ExecuteFileEx(string executePath, string[] arg)
+	public void ShlPowerControl(string[] arg)
+- Prepared for major changes (collections of strings instead of arrays of strings in v5.5)
+
+Version 4.3
+- More exceptions
+- Moved GetVersion to system
+- Added internal function
+	internal int ShlHardError(string Message, int errorCode)
+
+Version 4.2
+- Added Test Application
+- Fixed bug in ElmInitExceptionsManager()
+- Changed ElmInitExceptionsManager from internal to public (may change back later)
+- Fixed bugs in CreateFileEx
+- Added more exception handling to CopyFileEx and MoveFileEx
+- Added some more verbose error messages
+- Fixed many bugs in BaseMath
+- BaseMath() now takes number of arguments minus 1 instead of number of arguments
+
+Version 4.1
+- Added ExceptionsLite functions
+	 internal int ElmUnregisterException(int exceptionId)
+	 public int ElmUnregisterExceptionP(int exceptionId)
+- Slightly more complete documentation
+
+Version 4.0
+- Added ExceptionsLite properties
+	List<Exception> ExceptionList { get; set; }
+- Added ExceptionsLite structs
+    public struct Exception
+    {
+        public string exceptionName { get; set; } // The name of the exception.
+        public int exceptionId { get; set; } // The ID of the exception. < 10000 is reserved for the shell.
+        public string exceptionMessage { get; set; } // The message of the exception.
+        public int exceptionSeverity { get; set; } // The severity. 0 = return from function with code exceptionId, 1 = exit with exitcode exceptionId.
+    }
+- Added ExceptionsLite functions + ExceptionsLite
+	internal void ElmInitExceptionsManager()
+	internal int ElmRegisterException(string exceptionName, int exceptionId, string exceptionMessage, int exceptionSeverity)
+	public int ElmRegisterExceptionP(string exceptionName, int exceptionId, string exceptionMessage, int exceptionSeverity)
+	public int ElmThrowException(int exceptionId)
+- Merged classes into unified ShellCore class
+- Merged interfaces into Shell.Core and Shell.UI instead of Cosmo.UsefulLibrary.whatever
+- Function GetUsefulLibraryVersion() is now GetVersion()
+- Merged interfaces into unified IUsefulLibrary interface
+- Renamed from Cosmo's Useful Library to ShellCore for TUI shell project
+- Added ShellUI
+- Added ShellUI core functions
+	public void DrawBlankSpace(int amount)
+	public int SetConsoleColour(ConsoleColor foregroundColour, ConsoleColor backgroundColour)
+- Added Shl.exe - does nothing for now
+
+Version 3.9
+- Removed crappy String functions
+	public string[] EasySplit(string Split, char[] delimiters)
+	public string ReplaceStringSection(string ToReplace, string ReplaceWith)
+- Began renaming process to shellcore
+- Not sure what else tbh (i don't know lol)
+Version 3.0
+- Finally renamed the actual assembly from Blaze.API to Cosmo.UsefulLibrary
+- Moved GetUsefulLibraryVersion() from Maths to Core
+- Added String functions
+	public string[] EasySplit(string Split, char[] delimiters)
+	public string ReplaceStringSection(string ToReplace, string ReplaceWith)
+Version 2.6
+- Added FileIO functions
+	public bool CreateFileEx(string path, string initialContent=null, bool verifyThatNotAlreadyExist = false)
+	public bool DeleteFileEx(string path, bool askUserConsoleOnly = false, string confirmationMessage="Are you sure you want to delete")
+	public bool CopyFileEx(string oldpath, string newpath, bool operationSuccessfulMessageConsoleOnly = false, string operationSuccessfulMessage = "The file was successfully copied to")
+	public bool MoveFileEx(string oldpath, string newpath, bool operationSuccessfulMessageConsoleOnly = false, string operationSuccessfulMessage = "The file was successfully moved to")
+	
+Version 2.5
+
+- Added Cosmo.UsefulLibrary.FileIO class (merged in 4.0)
+	- Added VerifyExistence(string path)
+- Split functions previously in Cosmo.UsefulLibrary into Cosmo.UsefulLibrary.Maths
+- Removed replaced functions Add() Subtract() Multiply() Divide() Modulus() Or() And() & Xor() (use BaseMath() instead)
+
+Version 2.0
+- Merged Add() Subtract() Multiply() Divide() Modulus() Or() And() & Xor() into BaseMath(int operationId, int numOfArguments, int[] args). 
+operationId:
+0 = add
+1 = subtract
+2 = multiply
+3 = divide
+4 = modulus
+5 = and
+6 = or
+7 = xor
+- Old functions still present
+- Removed NewStyleFuncTest()
+
+Version 1.9.9.24
+- Fixed NewStyleFuncTest()
+Version 1.9.9.9
+- Added preparation function for 2.0 - NewStyleFuncTest(int numOfArguments, int[] args)
+Version 1.9
+- Added Math functions:
+	Modulus()
+	Or()
+	And()
+	Xor()
+Version 1.2
+- Added public int[] GetUsefulLibraryVersion()
+returns int[3] array where:
+int[0] = Major
+int[1] = Minor
+int[2] = Build
+int[3] = Revision
+
+Version 1.1.1
+- Added public string EasySplit(string Split, char[] delimiters)
+Version 1.1 [LOST]
+Added public int Divide(int num, int num2), public int Multiply(int num, int num2), and public int Subtract(int num, int num2) iirc
+Version 1.0 [LOST]
+public int Add(int num, int num2) Only
