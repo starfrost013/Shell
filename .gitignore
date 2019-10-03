@@ -1,3 +1,8 @@
 
 *.dll
 *.zip
+.vs/Shl/v16/Server/sqlite3/storage.ide
+.vs/Shl/v16/Server/sqlite3/db.lock
+.vs/Shl/v16/.suo
+.vs/Shl/v16/Server/sqlite3/storage.ide-wal
+.vs/Shl/v16/Server/sqlite3/storage.ide-shm
