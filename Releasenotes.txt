@@ -1,8 +1,139 @@
-ShellCore+ShellUI+Shl
+Shell
 
 Release notes
 
-Version 1.0 - 5.0
+Latest version: ShellCore 7.0.40
+***SHELL DOCUMENTATION IS COMING SOON!***
+DEVELOPMENT RELEASE 1 / ShellCore 7.0.40 / ShellUI 0.6.51 / Shell 0.2.66
+7.0 has a LOT of changes, so here they are (as of 7.0.29)
+MORE STUFF WILL BE CHANGED!
++ Modified BaseMath():
+* Now uses a double instead of an int
+* Replaced And, Or, and Xor with Sin, Cos, and Tan
+* Replaced operationId with an enum, BaseMathOperation, with 12 values:
+public enum BaseMathOperation { Add=0, Subtract=1, Multiply=2, Divide=3, Modulus=4, Sqrt=5, Sin=6, Cos=7, Tan=8, Asin=9, Acos=10, Atan=11 }
++ Added Asin, Acos, and Atan.
++ Added ShellCore method public List<double> Ratio(double n, double x, double y) to calculate a ratio. Returns a list with the quotients.
+* Renamed Pow(int x, int y) to Power(int x, int y)
+* Merged Sin(), Cos(), and Tan() into BaseMath()
+* Added error checking to ShellUI console-related functions
+* Added additional error checking to BaseMath
++ Added ShellCore methods *The registry API is not complete yet.*
+	public bool WinCreateRegKey(RegistryHive root, string thePath, bool writable = true) - Creates a registry key. Returns true if successful
+	public bool WinCreateRegKey(RegistryKey root, string theName, bool writable = true) - Creates a subkey. Returns true if successful.
+	public bool WinDeleteRegKey(RegistryHive root, string thePath) - Deletes a registry key. Returns true if successful
+	public bool WinDeleteRegKey(RegistryKey key, string theName, bool deltree = false) - Deletes a subkey, and optionally its entire key tree.
+	public RegistryKey WinOpenRegKey(RegistryHive root, string thePath, bool writable = true)
+	public RegistryKey WinOpenRegKey(RegistryKey key, string theName, bool writable = true) - Opens a subkey. 
+	public object WinGetRegValue(string keyPath, string valuePath, object defaultValue) - Gets a registry value. Use var.
+	public bool WinSetRegValue(string keyPath, string valuePath, object value, RegistryValueKind type) - Sets a registry value.
+	public bool WinDeleteRegValue(RegistryKey theKey, string valueName) - Deletes a registry value. 
+	public string[] WinListSubkeys(RegistryKey theKey, string valueName) - Returns a string array holding the children of a key.
+	public bool SetFileAttributeEx(string filePath, FileAttributes attribute) - Sets a file attribute to FileAttributes, with error protection.
+	public bool SetFileHiddenEx(string filePath) - Alias for SetFileAttributeEx(filePath, FileAttributes.Hidden);
+	public bool SetFileReadOnlyEx(string filePath) - Alias for SetFileAttributeEx(filePath, FileAttributes.ReadOnly);
+	public bool SetFileTemporaryEx(string filePath) - Alias for SetFileAttributeEx(filePath, FileAttributes.Temporary);
+	public bool SetFileSystemEx(string filePath) - Alias for SetFileAttributeEx(filePath, FileAttributes.System);
+	public bool RemoveAttributesEx(string filePath) - Alias for SetFileAttributeEx(string filePath, FileAttributes attribute);
++ Added error checking to <Op> handling in ShellUI
++ Modified <Op> handling
++ Made <Op> attributes more flexible - op, Op, operation, and Operation are all accepted instead of just op, and var, Var, variable, and Variable are all accepted instead of just 
+- Rewrote GetVersion() and PrintVersion() in both DLLs to get the actual file version instead of a hard-coded value.
++ Added ShellUI Core methods
+	public void UiSetWindowTitle(string title)
++ Fixed compile warning
++ Added if statements (crappy)
++ Added easier to use overload for BaseMath - public double BaseMath(BaseMathOperation operationId, double num, double num2) - harder to use one remains and is recommended. 
+* Modified messages when booting Shell.
++ Updated the Test Application to require less user input. It requires build 26 or later.
++ Probably stuff I forgot about
+Version 7.0.15 Alpha / ShellUI 0.5.20 Alpha / Shell 0.2.18 Alpha
+****THIS IS AN UNFINISHED VERSION OF SHELLCORE AND SHELLUI****
++ Added Registry functions for ShellCore (UNTESTED AS OF NOW, USE ONLY IF EXPERIMENTING)
+	WinCreateRegKey(int root, string thePath)
+	public bool WinDeleteRegKey(int root, string thePath)
+	public object WinGetRegValue(string keyPath, string valuePath, object defaultValue)
+	public bool WinSetRegValue(string keyPath, string valuePath, object value, RegistryValueKind type)
+THIS SECTION OF THE API IS NOT COMPLETE, AND MORE WILL BE ADDED.
++ Rewrote GetVersion() and PrintVersion() to get the actual version 
++ Modified <Op> handling code and added error checking
++ Changed versioning system - now auto-increments build number on compile.
+* There IS unused code for handling if statements, but that is not in yet and has been disabled for this release.
+- Removed unused code from a very early implementation of ShellXML
+
+Version 6.0 / ShellUI 0.5.5
+- Rewrote <Output> parsing to be not shit...again.
+- Added new Windows Forms API functions!
+	public Color WinColourDialog()
+	public void WinMsgBox(string caption = null, string text = null, MessageBoxButtons msgButtons = MessageBoxButtons.OK, MessageBoxIcon msgIcon = MessageBoxIcon.None)
+	public string WinOpenDialog(string defaultFileName, string defaultExtension, string filter, string title = null, bool checkPathExists = false, bool allowMultipleFiles = false)
+	public string WinSaveDialog(string defaultFileName, string defaultExtension, string filter, string title = null, bool checkPathExists = false, bool allowMultipleFiles = false)
+- Added new System functions
+	public void ShlWriteLog(string path, string text)
+	public void ShlCloseLog()
+	public void ShlBeep(Nullable<int> frequency = null, Nullable<int> length = null)
+- Fixed a bug in CopyFileEx and MoveFileEx
+- Errors in FileIO functions trigger exceptions 29 to 32 instead of silently returning
+- Enhanced Exit()
+- Lowercase node names are now accepted
+
+- Added ShellUI non-scripting functions:
+	public void UiSetCursorSize(int height)
+	public void UiSetCursorVisibility(bool visible)
+	public void UiSetWindowPosition(int x, int y)
+- Added superglobals - variables available to all ShellXML scripts
+- Added ShellUI superglobal related functions:
+	public void InitSuperglobals()
+- Added superglobals
+	- ShellCoreVer - the version of shellcore
+	- ShellUIVer - the version of shellui
+
+
+Version 5.7.0 / ShellUI 0.5.3
+- <Function> element. It supports functions, run in a separate file. No need to declare anything!
+- Made ShellUI act less retarded
+- Updated Shl.exe to 0.2.8, so now it uses the new way ShellUI works
+- Added ShellCore and ShellUI functions
+	public void PrintVersion()
+
+Version 5.6.2 / ShellUI 0.5.2
+- <Output> can now use the + operator.
+- Added public void ShlSetWindowTitle(string WindowTitle)
+
+Version 5.6.2 / ShellUI 0.5.1
+- <Op> now works with variables (adding numbers and variables only kinda works for some reason)
+- Added modulus to <Op>
+- The testing application has been updated to version 1.7 and will not launch if the version of shellcore is lower than 5.5.
+
+Version 5.6.2 / ShellUI 0.5.0
+- Added Argument support to Shl.exe (0.2.7) and ShellCore (5.6.2) - run Shl.exe with a path to a ShellXML file to make shell parse that file. Also shellcore will do this
+- Added <Op> parsing - add, subtract, multiply, divide. Next version: modulus, sine, cosine, tangent, and variables. (double or int only).
+- Added delegates
+- Split ShxmlDeclareVariable() into ShxmlInitVariable(), which initalizes and creates the variable itself, and ShxmlDeclareVariable(), which performs the preprocessing of the <Var> node. ShxmlInitVariable() can be called from anywhere now (Architectural improvement). ShxmlDeclareVariable no longer registers the variables and now calls one of the six overload functons of ShxmlInitVariable. Other functions in ShellUI will call ShxmlInitVariable instead of registering variables themselves in later versions.
+
+ShellUI.ShellXML.ShxmlInitVariable overloads:
+public ShxmlVariable ShxmlInitVariable(string Name, int value) // For ints
+public ShxmlVariable ShxmlInitVariable(string Name, string value) // For strings
+public ShxmlVariable ShxmlInitVariable(string Name, char value) // For chars
+public ShxmlVariable ShxmlInitVariable(string Name, double value) // For doubles
+public ShxmlVariable ShxmlInitVariable(string Name, float value) // For floats
+public ShxmlVariable ShxmlInitVariable(string Name, bool value) // For bools
+
+
+Version 5.5.1 / ShellUI 0.4.23
+- Added <Input>
+- Almost finished operations
+- <Input> element parsing works
+- Fixed compile warnings
+- <Output> can now print variables (only 1)
+
+Version 5.5 / ShellUI 0.4.8
+- Added ShellUI Core functions
+	public void UiSetCursorPosition(int x, int y)
+- Variable parsing works
+- Unfinished operation parsing, do not use
+- <Output> element parsing works and can print at any point on the screen.
+
 Version 5.5 / ShellUI 0.4.1
 
 - Changed all functions using arrays to use collections - int[] is now List<int>, etc. 

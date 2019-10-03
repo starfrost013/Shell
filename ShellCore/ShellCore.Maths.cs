@@ -21,95 +21,143 @@ namespace Shell.Core
 
         public int C { get; set; } // speed of light in m/s
 
-        // yea hyeah yeah yeah yeah yeah yeah yeah yeah yeah yeah yeah yeah yeah yea hyeah 
-        public int BaseMath(int operationId, int numOfArguments, List<int> args) // sorta shitty basic math function
+        public enum BaseMathOperation { Add=0, Subtract=1, Multiply=2, Divide=3, Modulus=4, Sqrt=5, Sin=6, Cos=7, Tan=8, Asin=9, Acos=10, Atan=11 }
+        public double BaseMath(BaseMathOperation operationId, double num, double num2) // 2-numbers only overload
+        {
+            double result = num; // bug fix
+            int opId = Convert.ToInt32(operationId);
+                try
+                {
+                    switch (opId)
+                    {
+                        case 0: // can't use a switch statement, sadly
+                            result = num + num2;
+                            return result;
+                        case 1:
+                            result = num - num2;
+                            return result;
+                        case 2:
+                            result = num * num2;
+                            return result;
+                        case 3:
+                            result = num / num2;
+                            return result;
+                        case 4:
+                            result = num % num2;
+                            return result;
+                        case 5:
+                            result = Math.Sqrt(num);
+                            return result;
+                        case 6:
+                            result = Math.Sin(num);
+                            return result;
+                        case 7:
+                            result = Math.Cos(num);
+                            return result; 
+                        case 8:
+                            result = Math.Tan(num);
+                            return result;
+                        case 9:
+                            result = Math.Asin(num);
+                            return result;
+                        case 10:
+                            result = Math.Acos(num);
+                            return result;
+                        case 11:
+                            result = Math.Atan(num);
+                            return result;
+                        default:
+                            ElmThrowException(44);
+                            return -0xd15ea5e;
+                    }
+
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    ElmThrowException(45);
+                }
+            return result;
+        }
+
+        public double BaseMath(BaseMathOperation operationId, int numOfArguments, List<double> args) // sorta shitty basic math function
         {
             int count = 1; // start at 1
-            int result = args[0]; // bug fix
-
+            double result = args[0]; // bug fix
+            int opId = Convert.ToInt32(operationId);
             for (int i = 0; i < numOfArguments; i++) // loop
             {
                 try
                 {
-                    if (operationId == 0) // can't use a switch statement, sadly
+                    switch (opId)
                     {
-                        result = result + args[count];
+                        case 0: // can't use a switch statement, sadly
+                            result = result + args[count];
+                            continue;
+                        case 1:
+                            result = result - args[count];
+                            continue;
+                        case 2:
+                            result = result * args[count];
+                            continue;
+                        case 3:
+                            result = result / args[count];
+                            continue;
+                        case 4:
+                            result = result % args[count];
+                            continue;
+                        case 5:
+                            result = Math.Sqrt(args[count]);
+                            continue;
+                        case 6:
+                            result = Math.Sin(args[count]);
+                            continue;
+                        case 7:
+                            result = Math.Cos(args[count]);
+                            continue;
+                        case 8:
+                            result = Math.Tan(args[count]);
+                            continue;
+                        case 9:
+                            result = Math.Asin(args[count]);
+                            continue;
+                        case 10:
+                            result = Math.Acos(args[count]);
+                            continue;
+                        case 11:
+                            result = Math.Atan(args[count]);
+                            continue;
+                        default:
+                            ElmThrowException(44);
+                            return -0xd15ea5e;
                     }
-                    else if (operationId == 1)
-                    {
-                        result = result - args[count];
-                    }
-                    else if (operationId == 2)
-                    {
-                        result = result * args[count];
-                    }
-                    else if (operationId == 3)
-                    {
-                        result = result / args[count];
-                    }
-                    else if (operationId == 4)
-                    {
-                        result = result % args[count];
-                    }
-                    else if (operationId == 5)
-                    {
-                        result = result & args[count];
-                    }
-                    else if (operationId == 6)
-                    {
-                        result = result | args[count];
-                    }
-                    else if (operationId == 7)
-                    {
-                        result = result ^ args[count];
-                    }
-
-                    count++;
 
                 }
-                catch (IndexOutOfRangeException err)
+                catch (IndexOutOfRangeException)
                 {
-                    return 0xD15EA5E;
+                    ElmThrowException(45);
                 }
 
 
             }
             return result;
         }
-       // 8 FUNCTIONS removed (2.1? 2.5?)
-        public double Sqrt(int num) // Sqrt
+
+
+
+        public double Power(int x, int y)
         {
-            double num3 = Math.Sqrt(num);
-            return num3;
+            double result = Math.Pow(x,y);
+            return result;
         }
 
-        public double Sin(int num) // Sin
+        public List<double> Ratio(double n, double x, double y)
         {
-            double num3 = Math.Sin(num);
-            return num3;
+            double z = x + y;
+            double r = n / z;
+            double q1 = r * x;
+            double q2 = r * y;
+            List<double> q = new List<double> { q1, q2 };
+            return q;
         }
-
-        public double Cos(int num) // Cos
-        {
-            double num3 = Math.Cos(num);
-            return num3;
-        }
-
-        public double Tan(int num) // Tan
-        {
-            double num3 = Math.Tan(num);
-            return num3;
-        }
-        
-
-        // TODO: add file APIs
-        /*
-        public int UsefulLibraryMaths() // Class Constructor for 1.9-3.9
-        {
-            Pi = Math.PI; // pi
-            E = Math.E;
-            C = 299792458; // speed of light in m/s
-        }
-        */
     }
 }

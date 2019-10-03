@@ -50,13 +50,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ShellCore + ShellUI Test Application\ShellCore + ShellUI Test Application.csproj">
+    <ProjectReference Include="..\ShellCore + ShellUI Test Application\ShellTest.csproj">
       <Project>{a8009200-cd1b-42b0-ac22-2d3ccf8bdd85}</Project>
-      <Name>ShellCore + ShellUI Test Application</Name>
+      <Name>ShellTest</Name>
     </ProjectReference>
     <ProjectReference Include="..\ShellCore\ShellCore.csproj">
       <Project>{403f76eb-4bdd-40a4-b4ce-1f02dba8cbad}</Project>
       <Name>ShellCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShellModule\ShellModule.csproj">
+      <Project>{00ee496c-c7b4-4c5f-b2ea-e947dbbef7ad}</Project>
+      <Name>ShellModule</Name>
     </ProjectReference>
     <ProjectReference Include="..\ShellUI\DynMenu\ShellUI.csproj">
       <Project>{ae044653-2d74-4330-879e-8e87736115c6}</Project>
@@ -64,4 +68,9 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties BuildVersion_StartDate="2000/1/1" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

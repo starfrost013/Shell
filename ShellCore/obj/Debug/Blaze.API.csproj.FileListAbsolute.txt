@@ -1,0 +1,6 @@
+C:\Users\Cosmo\Projects\Blaze-Shell-v3.0.0.0\Blaze.API\Blaze.API\bin\Debug\Blaze.API.dll
+C:\Users\Cosmo\Projects\Blaze-Shell-v3.0.0.0\Blaze.API\Blaze.API\bin\Debug\Blaze.API.pdb
+C:\Users\Cosmo\Projects\Blaze-Shell-v3.0.0.0\Blaze.API\Blaze.API\obj\Debug\Blaze.API.csproj.CoreCompileInputs.cache
+C:\Users\Cosmo\Projects\Blaze-Shell-v3.0.0.0\Blaze.API\Blaze.API\obj\Debug\Blaze.API.dll
+C:\Users\Cosmo\Projects\Blaze-Shell-v3.0.0.0\Blaze.API\Blaze.API\obj\Debug\Blaze.API.pdb
+C:\Users\Cosmo\Projects\Blaze-Shell-v3.0.0.0\Blaze.API\Blaze.API\obj\Debug\Blaze.API.csprojAssemblyReference.cache

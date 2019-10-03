@@ -1,0 +1,5 @@
+<ShellXML>
+	<If condition="49 = 49">
+		<Var name="funcvar" value="7.2"></Var>
+	</If>
+</ShellXML>

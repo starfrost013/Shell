@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Xml;
 using System.Threading.Tasks;
@@ -11,14 +13,24 @@ namespace Shell.UI
     {
         public List<ShxmlVariable> Varlist;
 
-        public int InitShellXML()
+        public ShellXML()
         {
-            Varlist = new List<ShxmlVariable>();
-            return 0;
+            this.Varlist = new List<ShxmlVariable>();
+            InitSuperglobals(); // init the superglobals
         }
 
+        public void InitSuperglobals()
+        {
+            FileVersionInfo CoreVersion = ShellCore.GetVersion();
+            FileVersionInfo Version = GetVersion();
+            ShxmlInitVariable("ShellUIVer",$"{Version.FileMajorPart}.{Version.FileMinorPart}.{Version.FileBuildPart}.{Version.FilePrivatePart}");
+            ShxmlInitVariable("ShellCoreVer", $"{CoreVersion.FileMajorPart}.{CoreVersion.FileMinorPart}.{CoreVersion.FileBuildPart}.{CoreVersion.FilePrivatePart}");
+        }
+
+        //TODO: Clean up this function. It blows ass and sucks dick right now.
         public ShxmlVariable ShxmlDeclareVariable(XmlNode node) // Automatically determines the type. Internal?
         {
+
             ShxmlVariable xmlvar = new ShxmlVariable();
             XmlAttributeCollection XmlAttrs = node.Attributes;
 
@@ -53,7 +65,7 @@ namespace Shell.UI
                 //Console.WriteLine(var.Name);
                 if (var.Name == var_name)
                 {
-                    //xmlvar = null;
+                    //var = null;
                     ShellCore.ElmThrowException(11);
                     return xmlvar; // silently return if duplicate
                 }
@@ -62,6 +74,7 @@ namespace Shell.UI
             xmlvar.Name = var_name;
 
             //todo: sometimes for some reason (doubles) it doesn't set the variable
+            // split this? -- for function parameters maybe??
             try
             {
                 switch (var_type)
@@ -98,19 +111,14 @@ namespace Shell.UI
 
                     case "int":
                     case "Int":
-                        xmlvar.Type = 0;
-                        xmlvar.varint = Convert.ToInt32(var_value);
-                        //Console.WriteLine(var_value);
-                        Varlist.Add(xmlvar);
+                        ShxmlInitVariable(var_name, Convert.ToInt32(var_value));
                         return xmlvar;
                     case "str":
                     case "Str":
                     case "string":
                     case "String":
                         //xmlvar.Name = var_name;
-                        xmlvar.Type = 1;
-                        xmlvar.varstring = var_value;
-                        Varlist.Add(xmlvar);
+                        ShxmlInitVariable(var_name, var_value);
                         return xmlvar;
                     case "letter":
                     case "char":
@@ -118,24 +126,17 @@ namespace Shell.UI
                     case "Char":
                     case "Character":
                     case "Letter":
-                        //xmlvar.Name = var_name;
-                        xmlvar.Type = 2;
-                        xmlvar.varchar = Convert.ToChar(var_value);
-                        Varlist.Add(xmlvar);
+                        ShxmlInitVariable(var_name, Convert.ToChar(var_value));
                         return xmlvar;
                     case "double":
                     case "Double":
                     case "number":
                     case "Number":
-                        xmlvar.Type = 3;
-                        xmlvar.vardouble = Convert.ToDouble(var_value);
-                        Varlist.Add(xmlvar);
+                        ShxmlInitVariable(var_name, Convert.ToDouble(var_value));
                         return xmlvar;
                     case "float":
                     case "Float":
-                        xmlvar.Type = 4;
-                        xmlvar.varfloat = Convert.ToSingle(var_value);
-                        Varlist.Add(xmlvar);
+                        ShxmlInitVariable(var_name, Convert.ToSingle(var_value));
                         return xmlvar;
                     case "bool":
                     case "Bool":
@@ -149,9 +150,7 @@ namespace Shell.UI
                     case "false/true":
                     case "false or true":
                     case "true or false":
-                        xmlvar.Type = 5;
-                        xmlvar.varbool = Convert.ToBoolean(var_value);
-                        Varlist.Add(xmlvar);
+                        ShxmlInitVariable(var_name, Convert.ToBoolean(var_value));
                         return xmlvar;
                     // floats not supported
                     default:
@@ -169,6 +168,73 @@ namespace Shell.UI
             }
             //return xmlvar;
             
+        }
+
+        // Init variable overloads
+        public ShxmlVariable ShxmlInitVariable(string Name, int value) // For ints
+        {
+            ShxmlVariable var = new ShxmlVariable();
+            var.Name = Name;
+            var.Type = 0;
+            var.varint = value;
+
+            Varlist.Add(var);
+            return var;
+        }
+
+        public ShxmlVariable ShxmlInitVariable(string Name, string value) // For strings
+        {
+            ShxmlVariable var = new ShxmlVariable();
+            var.Name = Name;
+            var.Type = 1;
+            var.varstring = value;
+
+            Varlist.Add(var);
+            return var;
+        }
+
+        public ShxmlVariable ShxmlInitVariable(string Name, char value) // For chars
+        {
+            ShxmlVariable var = new ShxmlVariable();
+            var.Name = Name;
+            var.Type = 2;
+            var.varchar = value;
+
+            Varlist.Add(var);
+            return var;
+        }
+
+        public ShxmlVariable ShxmlInitVariable(string Name, double value) // For doubles
+        {
+            ShxmlVariable var = new ShxmlVariable();
+            var.Name = Name;
+            var.Type = 3;
+            var.vardouble = value;
+
+            Varlist.Add(var);
+            return var;
+        }
+
+        public ShxmlVariable ShxmlInitVariable(string Name, float value) // For floats
+        {
+            ShxmlVariable var = new ShxmlVariable();
+            var.Name = Name;
+            var.Type = 4;
+            var.varfloat = value;
+
+            Varlist.Add(var);
+            return var;
+        }
+
+        public ShxmlVariable ShxmlInitVariable(string Name, bool value) // For bools
+        {
+            ShxmlVariable var = new ShxmlVariable();
+            var.Name = Name;
+            var.Type = 5;
+            var.varbool = value;
+
+            Varlist.Add(var);
+            return var;
         }
 
 

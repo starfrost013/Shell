@@ -1,0 +1,2 @@
+ModuleXmlInvalidRootNode Warning #55: An invalid root node was found in a Module.xml file. Please change the root node to <Module></Module>.
+. Try running Shell as administrator..

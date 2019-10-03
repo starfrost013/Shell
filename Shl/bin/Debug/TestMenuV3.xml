@@ -1,0 +1,9 @@
+<ShellXML>
+	<Var name="thisisanint" value="2"></Var>
+	<Output text="hello     yaeh    +thisisanint"></Output>
+	<Function path="Func.xml"></Function>
+	<Op op="7 + 7 + 7" var="hello"></Op>
+	<If condition="49 = 49">
+		<Var name="ifOnly" value="7"></Var>	
+	</If>
+</ShellXML>

@@ -1,0 +1,12 @@
+<!-- Modular Shell Module XML Definition File
+© 2019 Cosmo for avant-gardé eyes and Shell. -->
+
+<Module>
+	<Name> Test Module </Name>
+	<Version> 1.0 </Version>
+	<Copyright> © 2019 Cosmo </Copyright>
+	<Author> Cosmo </Author>
+	<Website> http://shell.x10.mx </Website>
+	<Dll> Dummy.txt </Dll> <!-- for testing purposes -->
+	<Extends> ShellCore </Extends>
+</Module>

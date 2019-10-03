@@ -11,7 +11,7 @@
     <AssemblyName>ShellCore</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
+    <Deterministic>false</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,6 +33,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,13 +46,34 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ShellCore.Core.cs" />
-    <Compile Include="Interface.cs" />
+    <Compile Include="ShellCore.Compression.cs" />
+    <Compile Include="ShellCore.DebugSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShellCore.DebugSettings.Designer.cs">
+      <DependentUpon>ShellCore.DebugSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShellCore.WinFormsSound.cs" />
+    <Compile Include="ShellCore.IShell.cs" />
+    <Compile Include="ShellCore.WinFormsDialog.cs" />
     <Compile Include="ShellCore.System.cs" />
     <Compile Include="ShellCore.ExceptionsLite.cs" />
     <Compile Include="ShellCore.Maths.cs" />
     <Compile Include="ShellCore.FileIO.cs" />
-    <Compile Include="ShellCore.ShellCore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ShellCore.WinRegistry.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ShellCore.DebugSettings.resx">
+      <DependentUpon>ShellCore.DebugSettings.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties BuildVersion_StartDate="2000/1/1" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

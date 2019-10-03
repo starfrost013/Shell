@@ -6,10 +6,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Shell UI & Script Manager DLL")]
-[assembly: AssemblyDescription("Do Not Use - Heavily Under Construction")]
+[assembly: AssemblyDescription("ShellXML Powered")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ShellUI v0.4.X")]
+[assembly: AssemblyProduct("ShellUI v0.5.X")]
 [assembly: AssemblyCopyright("Copyright © Cosmo 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.4.5.0")]
-[assembly: AssemblyFileVersion("0.4.5.0")]
+[assembly: AssemblyVersion("0.6.94.0")]
+[assembly: AssemblyFileVersion("0.6.94.0")]

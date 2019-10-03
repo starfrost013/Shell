@@ -1,0 +1,8 @@
+C:\Users\Cosmo\ShellProject\Shl\Shl\bin\Debug\ShellCore + ShellUI Test Application.exe.config
+C:\Users\Cosmo\ShellProject\Shl\Shl\bin\Debug\ShellCore + ShellUI Test Application.exe
+C:\Users\Cosmo\ShellProject\Shl\Shl\bin\Debug\ShellCore + ShellUI Test Application.pdb
+C:\Users\Cosmo\ShellProject\Shl\ShellCore + ShellUI Test Application\obj\Debug\ShellCore + ShellUI Test Application.csprojAssemblyReference.cache
+C:\Users\Cosmo\ShellProject\Shl\ShellCore + ShellUI Test Application\obj\Debug\ShellCore + ShellUI Test Application.csproj.CoreCompileInputs.cache
+C:\Users\Cosmo\ShellProject\Shl\ShellCore + ShellUI Test Application\obj\Debug\ShellCore + ShellUI Test Application.csproj.CopyComplete
+C:\Users\Cosmo\ShellProject\Shl\ShellCore + ShellUI Test Application\obj\Debug\ShellCore + ShellUI Test Application.exe
+C:\Users\Cosmo\ShellProject\Shl\ShellCore + ShellUI Test Application\obj\Debug\ShellCore + ShellUI Test Application.pdb

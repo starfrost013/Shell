@@ -1,4 +1,4 @@
-<ShellXML>
+﻿<ShellXML>
 
 	<Var name="a" value="5"></Var>
 	<Var name="b" value="h"></Var>
@@ -12,12 +12,23 @@
 	<Var name="Oh crap" type="string" value="hello"></Var>
 	<Var name="Fadf" type="char" value="C"></Var>
 	<Var name="Fadass" type="double" value="68.12"></Var>
+	<Var name="add01" value="1"></Var>
+	<Var name="add02" value="2"></Var>
+	<Var name="add03" value="2"></Var>
+	<Var name="add04" value="2"></Var>
 	<!--<Var name="float" type="float" value="5.4f"></Var>
 	<Var name="float" type="f2" value="0.5491f"></Var>
 	-->
 	<Var name="c" type="int" value="1823"></Var>
 	<Var name="a6" type="bool" value="true"></Var>
-	<Var name="a²" value="false"></Var>
+	<Var name="ax" value="false"></Var>
+	<Output text="Hello" posx="0" posy="0"></Output>
+	<Output text="Hello" posx="15" posy="3"></Output>
+	<Output text="Hello + a"></Output>
+	<Output text="kdadhs"></Output>
+	<Input char=">" var="var01" posx="20" posy="0"> </Input>
+	<Op op="6 * 6" var="operation_test2"></Op>
+	<Op op="add01 + add02 + add03 + add04" var="add05"></Op> <!-- Adding numbers and variables doesn't work yet -- not sure why. (ShellCore 5.6.2/ShellUI 0.5.1)-->
 	<!--<Var name="NO type test." value="82147237"> </Var>-->
 	
 </ShellXML>

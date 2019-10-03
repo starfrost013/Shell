@@ -1,0 +1,5 @@
+<ShellXML>
+	<!-- First shellxml script to my knowledge. Written 2019-09-11 22:24 -->
+	<Input text="What's your name?" char=">" var="result"></Input>
+	<Output text="Hello+result"></Output>
+</ShellXML>

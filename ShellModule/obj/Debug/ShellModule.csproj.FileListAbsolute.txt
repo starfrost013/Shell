@@ -1,0 +1,8 @@
+C:\Users\Cosmo\ShellProject\Shl\ShellModule\bin\Debug\ShellModule.dll
+C:\Users\Cosmo\ShellProject\Shl\ShellModule\bin\Debug\ShellModule.pdb
+C:\Users\Cosmo\ShellProject\Shl\ShellModule\obj\Debug\ShellModule.csproj.CoreCompileInputs.cache
+C:\Users\Cosmo\ShellProject\Shl\ShellModule\obj\Debug\ShellModule.dll
+C:\Users\Cosmo\ShellProject\Shl\ShellModule\obj\Debug\ShellModule.pdb
+C:\Users\Cosmo\ShellProject\Shl\Shl\bin\Debug\ShellModule.dll
+C:\Users\Cosmo\ShellProject\Shl\Shl\bin\Debug\ShellModule.pdb
+C:\Users\Cosmo\ShellProject\Shl\ShellModule\obj\Debug\ShellModule.csproj.CopyComplete

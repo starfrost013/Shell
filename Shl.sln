@@ -9,7 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShellCore", "ShellCore\Shel
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShellUI", "ShellUI\DynMenu\ShellUI.csproj", "{AE044653-2D74-4330-879E-8E87736115C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShellCore + ShellUI Test Application", "ShellCore + ShellUI Test Application\ShellCore + ShellUI Test Application.csproj", "{A8009200-CD1B-42B0-AC22-2D3CCF8BDD85}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShellTest", "ShellCore + ShellUI Test Application\ShellTest.csproj", "{A8009200-CD1B-42B0-AC22-2D3CCF8BDD85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShellModule", "ShellModule\ShellModule.csproj", "{00EE496C-C7B4-4C5F-B2EA-E947DBBEF7AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,11 +35,19 @@ Global
 		{A8009200-CD1B-42B0-AC22-2D3CCF8BDD85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8009200-CD1B-42B0-AC22-2D3CCF8BDD85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8009200-CD1B-42B0-AC22-2D3CCF8BDD85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00EE496C-C7B4-4C5F-B2EA-E947DBBEF7AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00EE496C-C7B4-4C5F-B2EA-E947DBBEF7AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00EE496C-C7B4-4C5F-B2EA-E947DBBEF7AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00EE496C-C7B4-4C5F-B2EA-E947DBBEF7AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B300D2F3-58C8-4750-8F23-7D46AC3E5059}
+		BuildVersion_StartDate = 2000/1/1
+		BuildVersion_UpdateAssemblyVersion = True
+		BuildVersion_UpdateFileVersion = True
+		BuildVersion_ConfigurationName = Any
 	EndGlobalSection
 EndGlobal

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,19 +36,19 @@ namespace Shell.Core
                     var ft = File.AppendText(initialContent);
                     fx.Close(); 
                 }
-                catch (FileNotFoundException err)
+                catch (FileNotFoundException)
                 {
-                    Console.WriteLine($"{err} - Somehow we couldn't find the file we just made, oh shit.");
+                    ElmThrowException(31);
                     return false; // we failed
                 }
-                catch (DirectoryNotFoundException err)
+                catch (DirectoryNotFoundException)
                 {
-                    Console.WriteLine($"{err} - Or, the directory wasn't found for creating.");
+                    ElmThrowException(32);
                     return false; // we failed
                 }
-                catch (IOException err)
+                catch (IOException)
                 {
-                    Console.WriteLine(err);
+                    ElmThrowException(29);
                     return false;
                 }
 
@@ -58,31 +59,56 @@ namespace Shell.Core
             
         public bool DeleteFileEx(string path, bool askUserConsoleOnly = false, string confirmationMessage="Are you sure you want to delete") // Delete File for 2.6+
         {
-            if (askUserConsoleOnly == true)
+            try
             {
-                bool loopAsk = true;
-                while (loopAsk == true) // deleteFile
+                if (askUserConsoleOnly == true)
                 {
-                    Console.WriteLine($"{confirmationMessage} {path} [Y/N]?");
-                    string result = Console.ReadLine();
-                    switch (result)
+                    bool loopAsk = true;
+                    while (loopAsk == true) // deleteFile
                     {
-                        case "n":
-                            return false;
-                        case "N":
-                            return false;
-                        case "y":
-                        case "Y":
-                            loopAsk = false;
-                            break; // stop the looping!
-   
+                        Console.WriteLine($"{confirmationMessage} {path} [Y/N]?");
+                        string result = Console.ReadLine();
+                        switch (result)
+                        {
+                            case "n":
+                                return false;
+                            case "N":
+                                return false;
+                            case "y":
+                            case "Y":
+                                loopAsk = false;
+                                break; // stop the looping!
+
+                        }
+
                     }
 
-                }
 
-                
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                ElmThrowException(31);
+                return false; // we failed
             }
 
+            catch (DirectoryNotFoundException)
+            {
+                ElmThrowException(32);
+                return false; // we failed
+            }
+
+            catch (UnauthorizedAccessException)
+            {
+                ElmThrowException(30);
+                return false;
+            }
+
+            catch (IOException)
+            {
+                ElmThrowException(29);
+                return false;
+            }
             File.Delete(path); // actually delete the file!
             return true;
         }
@@ -90,35 +116,36 @@ namespace Shell.Core
         public bool CopyFileEx(string oldpath, string newpath, bool operationSuccessfulMessageConsoleOnly = false, string operationSuccessfulMessage = "The file was successfully copied to")
         {   try
             {
-                
                 File.Copy(oldpath, newpath);
-                //fc.Close();
             }
 
-            catch (FileNotFoundException err)
+            catch (FileNotFoundException)
             {
+                ElmThrowException(31);
+                return false;
+            }
+
+            catch (DirectoryNotFoundException)
+            {
+                ElmThrowException(32);
                 return false; // we failed
             }
 
-            catch (DirectoryNotFoundException err)
+            catch (UnauthorizedAccessException)
             {
-                return false; // we failed
+                ElmThrowException(30);
+                return false;
             }
 
-            catch (UnauthorizedAccessException err)
+            catch (IOException)
             {
-                return false; // we failed
+                ElmThrowException(29);
+                return false;
             }
 
-            catch (IOException err)
+            if (operationSuccessfulMessageConsoleOnly == true)
             {
-
-                Console.WriteLine($"{err} \n\n\n- Or, that file already exists.");
-            }
-
-            if (operationSuccessfulMessageConsoleOnly == false)
-            {
-                Console.WriteLine($"{operationSuccessfulMessage} {newpath} ");
+                Console.WriteLine($"{operationSuccessfulMessage} {newpath}.");
             }
 
             return true;
@@ -131,34 +158,38 @@ namespace Shell.Core
                 File.Move(oldpath, newpath);
             }
 
-            catch (FileNotFoundException err)
+            catch (FileNotFoundException)
             {
+                ElmThrowException(31);
                 return false; // we failed
             }
 
-            catch (DirectoryNotFoundException err)
+            catch (DirectoryNotFoundException)
             {
+                ElmThrowException(32);
                 return false; // we failed
             }
 
-            catch (UnauthorizedAccessException err)
+            catch (UnauthorizedAccessException)
             {
-                return false; // we failed
+                ElmThrowException(30);
+                return false;
             }
 
-            catch (IOException err)
-            {
-                
-                Console.WriteLine($"{err} \n\n\n- Or, that file already exists.");
+            catch (IOException)
+            { 
+                ElmThrowException(29);
+                return false;
             }
 
-            if (operationSuccessfulMessageConsoleOnly == false)
+            if (operationSuccessfulMessageConsoleOnly == true)
             {
                 Console.WriteLine($"{operationSuccessfulMessage} {newpath} ");
             }
 
             return true;
         }
+
         public bool VerifyExistence(string path) // Checks if a file exists
         {
             if (File.Exists(path))
@@ -167,6 +198,93 @@ namespace Shell.Core
             }
             else
             {
+                return false;
+            }
+        }
+
+        public bool DownloadFileEx(string url, string destination)
+        {
+            try
+            {
+                WebClient webClient = new WebClient();
+                webClient.DownloadFile(new Uri(url), destination);
+                return true;
+            }
+            catch (WebException)
+            {
+                ElmThrowException(54);
+                return false;
+            }
+
+        }
+        public bool DownloadFileExAsync(string url, string destination)
+        {
+            try
+            {
+                WebClient webClient = new WebClient();
+                webClient.DownloadFileAsync(new Uri(url), destination);
+                return true;
+            }
+            catch (WebException)
+            {
+                ElmThrowException(54);
+                return false;
+            }
+        }
+
+        public bool SetFileHiddenEx(string filePath) // set hidden
+        {
+            bool result = SetFileAttributeEx(filePath, FileAttributes.Hidden);
+            return result;
+        }
+
+        public bool SetFileReadOnlyEx(string filePath)
+        {
+            bool result = SetFileAttributeEx(filePath, FileAttributes.ReadOnly);
+            return result;
+        }
+
+        public bool SetFileTemporaryEx(string filePath)
+        {
+            bool result = SetFileAttributeEx(filePath, FileAttributes.Temporary);
+            return result;
+        }
+
+        public bool SetFileSystemEx(string filePath)
+        {
+            bool result = SetFileAttributeEx(filePath, FileAttributes.System);
+            return result;
+        }
+
+        public bool RemoveAttributesEx(string filePath)
+        {
+            bool result = SetFileAttributeEx(filePath, FileAttributes.Normal);
+            return result;
+        }
+
+        public bool SetFileAttributeEx(string filePath, FileAttributes attribute)
+        {
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    File.SetAttributes(filePath, attribute);
+                    return true;
+                }
+                else
+                {
+                    ElmThrowException(31); // create the file instead?
+                    return false;
+                }
+            }
+            catch (IOException)
+            {
+                ElmThrowException(29);
+                return false;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                ElmThrowException(30);
                 return false;
             }
         }
