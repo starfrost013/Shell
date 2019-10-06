@@ -102,6 +102,8 @@ namespace Shell
 
             ShellUI.ShXML.XmlParseScript("Whatsyourname.xml");
 
+            Console.WriteLine("DEBUG: Variables created");
+
             foreach (ShxmlVariable ShxmlVar in ShellUI.ShXML.Varlist)
             {
                 switch (ShxmlVar.Type)
