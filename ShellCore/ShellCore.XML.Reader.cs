@@ -372,7 +372,7 @@ namespace Shell.Core
 
             if (!xmlParent.HasChildNodes)
             {
-                ElmThrowException(68); // what the fuck? (use error 12?)
+                ElmThrowException(64); // what the fuck? (use error 12?)
             }
 
             XmlNodeList SiblingsList = xmlNode.ChildNodes;
@@ -396,7 +396,7 @@ namespace Shell.Core
 
             if (!xmlParent.HasChildNodes)
             {
-                ElmThrowException(68); // what the fuck? (use error 12?)
+                ElmThrowException(64); // what the fuck? (use error 12?)
             }
 
             XmlNodeList SiblingsList = xmlNode.ChildNodes;
@@ -420,7 +420,7 @@ namespace Shell.Core
 
             if (!xmlParent.HasChildNodes)
             {
-                ElmThrowException(68); // what the fuck? (use error 12?)
+                ElmThrowException(64); // what the fuck? (use error 12?)
             }
 
             XmlNodeList SiblingsList = xmlNode.ChildNodes;
@@ -453,7 +453,7 @@ namespace Shell.Core
 
             if (!xmlParent.HasChildNodes)
             {
-                ElmThrowException(68); // what the fuck? (use error 12?)
+                ElmThrowException(64); // what the fuck? (use error 12?)
             }
 
             XmlNodeList SiblingsList = xmlNode.ChildNodes;
@@ -487,7 +487,7 @@ namespace Shell.Core
 
             if (!xmlParent.HasChildNodes)
             {
-                ElmThrowException(68); // what the fuck? (use error 12?)
+                ElmThrowException(64); // what the fuck? (use error 12?)
             }
 
             XmlNodeList SiblingsList = xmlNode.ChildNodes;

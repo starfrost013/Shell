@@ -89,6 +89,11 @@ namespace Shell.Core
                 ElmRegisterException("NoXmlElementFoundException", 63, "An XML node, inner text, or attribute could not be found.", 2);
                 ElmRegisterException("XmlExceptionReadingInnerTextException", 64, "An error occurred reading the inner text of an XML node.", 2);
                 ElmRegisterException("UhOhWe'reFuckedException", 65, "Something bad happened and the XML file we were using got screwed up. Exiting for system integrity.", 4);
+                ElmRegisterException("AttributeNotFoundException", 66, "XmlGetAttribute couldn't find the attribute passed to it.", 2);
+                ElmRegisterException("AttributesNotFoundException", 67, "XmlGetAttributes couldn't find any attributes in the node passed to it.", 2);
+                ElmRegisterException("AttributesNoValueException", 68, "No value was given for an attribute when attempting to create it.", 2);
+                ElmRegisterException("AttemptToRemoveNonexistentAttributeException", 69, "XmlRemoveAttribute attempted to remove a nonexistent attribute.", 2);
+                ElmRegisterException("AttemptToRemoveNonexistentNodeException", 70, "XmlRemoveNode attempted to remove, get the text for, or add the text for a nonexistent node.", 2);
 
                 ElmInitialized = 1;
                 return;
@@ -117,7 +122,7 @@ namespace Shell.Core
 
         public int ElmRegisterExceptionP(string exceptionName, int exceptionId, string exceptionMessage, int exceptionSeverity) // public exception registration
         {
-            if (exceptionId < 3000) // 10,000 and below will be used by the shell
+            if (exceptionId < 3000) // 3,000 and below will be used by the shell
             {
                 return 1;
             }

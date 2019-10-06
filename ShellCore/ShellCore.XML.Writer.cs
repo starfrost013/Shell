@@ -72,8 +72,17 @@ namespace Shell.Core
 
         public XmlDocument XmlRemoveNode(XmlDocument xmlDocument, XmlNode nodeToRemove) // Removes a node from an XmlDocument.
         {
-            xmlDocument.RemoveChild(nodeToRemove);
-            return xmlDocument;
+
+            try
+            {
+                xmlDocument.RemoveChild(nodeToRemove);
+                return xmlDocument;
+            }
+			catch (ArgumentException)
+            {
+                ElmThrowException(70);
+                return null;
+            }
 
         }
 
@@ -84,7 +93,7 @@ namespace Shell.Core
 
 			if (attributeValue == null)
             {
-                ElmThrowException(70);
+                ElmThrowException(68);
             }
 
             xmlAttribute.Value = attributeValue;
@@ -112,7 +121,7 @@ namespace Shell.Core
                 }
 				else
                 {
-                    ElmThrowException(71);
+                    ElmThrowException(69);
                     return null;
                 }
             }
@@ -133,7 +142,7 @@ namespace Shell.Core
                 }
                 else
                 {
-                    ElmThrowException(72);
+                    ElmThrowException(70);
                     return null;
                 }
             }
@@ -153,7 +162,7 @@ namespace Shell.Core
                 }
                 else
                 {
-                    ElmThrowException(72);
+                    ElmThrowException(70);
                     return null;
                 }
             }

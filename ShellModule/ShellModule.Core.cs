@@ -36,17 +36,7 @@ namespace Shell.Module
         public void GetModule()
         {
 
-            XmlDocument ModuleXml = new XmlDocument();
-            
-            try
-            {
-                ModuleXml.Load("Modules/Module.xml");
-            }
-            catch (XmlException)
-            {
-                ShellCore.ElmThrowException(56);
-            }
-
+            XmlDocument ModuleXml = ShellCore.XmlOpenFile("Modules/Module.xml");
             XmlNode moduleRoot = ModuleXml.FirstChild;
             string Name = moduleRoot.Name;
 
