@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shell.Core;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Shell.UI
 {
-    partial class ShellXML
+    partial class ShellXML 
     {
         public List<ShxmlVariable> Varlist;
 

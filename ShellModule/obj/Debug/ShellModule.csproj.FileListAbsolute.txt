@@ -6,3 +6,4 @@ C:\Users\Cosmo\ShellProject\Shl\ShellModule\obj\Debug\ShellModule.pdb
 C:\Users\Cosmo\ShellProject\Shl\Shl\bin\Debug\ShellModule.dll
 C:\Users\Cosmo\ShellProject\Shl\Shl\bin\Debug\ShellModule.pdb
 C:\Users\Cosmo\ShellProject\Shl\ShellModule\obj\Debug\ShellModule.csproj.CopyComplete
+C:\Users\Cosmo\ShellProject\Shl\ShellModule\obj\Debug\ShellModule.csprojAssemblyReference.cache

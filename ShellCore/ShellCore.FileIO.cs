@@ -289,5 +289,69 @@ namespace Shell.Core
             }
         }
 
+        public bool? CreateFolderEx(string folderPath)
+        {
+            try
+            {
+                Directory.CreateDirectory(folderPath);
+                return true;
+            }
+            catch (FileNotFoundException)
+            {
+                ElmThrowException(31);
+                return false;
+            }
+
+            catch (DirectoryNotFoundException)
+            {
+                ElmThrowException(32);
+                return false; // we failed
+            }
+
+            catch (UnauthorizedAccessException)
+            {
+                ElmThrowException(30);
+                return false;
+            }
+
+            catch (IOException)
+            {
+                ElmThrowException(29);
+                return false;
+            }
+        }
+
+        public bool? DeleteFolderEx(string folderPath)
+        {
+            try
+            {
+                Directory.Delete(folderPath);
+                return true;
+            }
+            catch (FileNotFoundException)
+            {
+                ElmThrowException(31);
+                return false;
+            }
+
+            catch (DirectoryNotFoundException)
+            {
+                ElmThrowException(32);
+                return false; // we failed
+            }
+
+            catch (UnauthorizedAccessException)
+            {
+                ElmThrowException(30);
+                return false;
+            }
+
+            catch (IOException)
+            {
+                ElmThrowException(29);
+                return false;
+            }
+
+        }
     }
 }

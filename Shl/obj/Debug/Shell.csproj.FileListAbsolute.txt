@@ -6,3 +6,8 @@ C:\Users\Cosmo\ShellProject\Shl\Shl\obj\Debug\Shell.csproj.CoreCompileInputs.cac
 C:\Users\Cosmo\ShellProject\Shl\Shl\obj\Debug\Shl.exe
 C:\Users\Cosmo\ShellProject\Shl\Shl\obj\Debug\Shl.pdb
 C:\Users\Cosmo\ShellProject\Shl\Shl\obj\Debug\Shell.csproj.CopyComplete
+C:\Users\Cosmo\ShellProject\Shl\Shl\bin\Debug\ShellTest.pdb
+C:\Users\Cosmo\ShellProject\Shl\Shl\bin\Debug\ShellTest.exe.config
+C:\Users\Cosmo\ShellProject\Shl\Shl\bin\Debug\ShellCore.pdb
+C:\Users\Cosmo\ShellProject\Shl\Shl\bin\Debug\ShellModule.pdb
+C:\Users\Cosmo\ShellProject\Shl\Shl\bin\Debug\ShellUI.pdb

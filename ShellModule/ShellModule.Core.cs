@@ -49,6 +49,7 @@ namespace Shell.Module
 
             XmlNode moduleRoot = ModuleXml.FirstChild;
             string Name = moduleRoot.Name;
+
             if (Name == "#comment")
             {
                 while (Name == "#comment")
@@ -122,6 +123,33 @@ namespace Shell.Module
 
                 }
             }
+
+            try
+            {
+                ModuleXml.Load("Modules.xml"); // shellmodule ss
+            }
+            catch (XmlException)
+            {
+                // error loading xml
+                ShellCore.ElmThrowException(58); // hmm
+            }
+
+            moduleRoot = ModuleXml.FirstChild;
+            Name = moduleRoot.Name;
+
+            if (Name == "#comment")
+            {
+                while (Name == "#comment")
+                {
+                    Name = moduleRoot.NextSibling.Name; // get the next node until we have an actual node.
+                }
+            }
+
+            if (Name != "Modules")
+            {
+                ShellCore.ElmThrowException(58);
+            }
+            ShellCore.DeleteFileEx("Modules/Module.xml");
 
         }
     }
