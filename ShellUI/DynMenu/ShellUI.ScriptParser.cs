@@ -29,47 +29,17 @@ namespace Shell.UI
                 Console.WriteLine($"Parsing ShellXML script at {path}...\n");
             }
 
-            XmlDocument script = new XmlDocument();
+            XmlDocument script = ShellCore.XmlOpenFile(path);
 
-            try
-            {
-                script.Load(path);
-            }
-
-            catch (FileNotFoundException)
-            {
-                ShellCore.ElmThrowException(13);
-            }
-
-            catch (DirectoryNotFoundException)
-            {
-                ShellCore.ElmThrowException(13);
-            }
-
-            catch (XmlException)
-            {
-                ShellCore.ElmThrowException(10);
-            }
-
-
-            XmlNode script_root = script.FirstChild;
-
-            if (script_root.Name != "ShellXML")
-            {
-                ShellCore.ElmThrowException(3); // throw an exception if the shellxml node isn't there
-            }
+            XmlNode script_root = ShellCore.XmlGetRootNode(script, true, "ShellXML", 3);
 
             XmlNodeList ScriptTokens;
 
-            if (!script_root.HasChildNodes)
-            {
-                ShellCore.ElmThrowException(4); // nothing
-                return 5;
+            bool result = ShellCore.XmlCheckForChildNodes(script, true, 4);
 
-            }
-            else
+            if (result == true)
             {
-                ScriptTokens = script_root.ChildNodes;
+                ScriptTokens = ShellCore.XmlGetChildren(script_root);
                 XmlParseScriptNodes(ScriptTokens);
             }
 
@@ -120,6 +90,8 @@ namespace Shell.UI
                         continue;
                     case "exception":
                     case "Exception":
+                        ShxmlException(token);
+                        continue;
                     case "if":
                     case "If":
                         ShxmlHandleIfStatement(token);

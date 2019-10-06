@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ShellCore.Core.cs" />
+    <Compile Include="ShellCore.XML.Reader.cs" />
     <Compile Include="ShellCore.Compression.cs" />
     <Compile Include="ShellCore.DebugSettings.cs">
       <SubType>Form</SubType>
@@ -70,10 +71,13 @@
       <DependentUpon>ShellCore.DebugSettings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ShellCore.XML.Writer.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2000/1/1" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" />
+      <UserProperties BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_StartDate="2000/1/1" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

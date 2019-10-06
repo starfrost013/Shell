@@ -15,6 +15,7 @@ namespace Shell.Core
 
         public int ElmInitialized { get; set; }
 
+        public enum ErrorSeverity { Message = 0, Warning, Error, FatalError, CatastrophicError};
         public void ElmInitExceptionManager()
         {
             if (ElmInitialized == 0)
@@ -55,7 +56,7 @@ namespace Shell.Core
                 ElmRegisterException("UnauthorizedAccessException", 30, "Access to a file was denied when attempting to perform an operation on it.", 2);
                 ElmRegisterException("FileNotFoundException", 31, "The file could not be found.", 2);
                 ElmRegisterException("DirectoryNotFoundException", 32, "The directory/folder could not be found.", 2);
-                ElmRegisterException("EmptyIfStatementException", 33, "An empty if statement was found.", 1); // severity 1?
+                ElmRegisterException("EmptyIfStatementException", 33, "An empty if statement was found.", 1);
                 ElmRegisterException("CreateInvalidRegistryKeyException", 34, "When calling WinRegCreateKey, an invalid root parameter was specified.", 2);
                 ElmRegisterException("DeleteInvalidRegistryKeyException", 35, "When calling WinRegDeleteKey, an invalid root parameter was specified.", 2);
                 ElmRegisterException("RegistryAccessDeniedException", 36, "When calling a registry-related function, access to the registry was denied by the operating system. You most likely opened the key as read only. If adding writable = true to the end of your open key statement doesn't work, try running Shell as administrator. If that doesn't work, we are stupid and we shouldn't have released this.", 2);
@@ -71,7 +72,7 @@ namespace Shell.Core
                 ElmRegisterException("InvalidWindowPositionException", 46, "When calling UiDrawMultiple, UiDrawBlankSpace, UiSetWindowSize, UiSetCursorSize, UiSetCursorPosition, or UiSetWindowPosition, one of the parameters was negative.", 3);
                 ElmRegisterException("ConsolePosOrSizeWouldOverrunBufferException", 47, "When calling UiSetWindowPosition, UiSetWindowSize, the console window would be larger than the console buffer. ", 3);
                 ElmRegisterException("ConsoleHeightTooHighException", 48, "The console height cannot be above 63 columns.", 3);
-                ElmRegisterException("ConsoleTitleArgumentNullException", 49, "When calling UiSetWindowTitle, a parameter was null. Please rectify this issue.", 3);
+                ElmRegisterException("ConsoleTitleArgumentNullException", 49, "When calling UiSetWindowTitle, a parameter was null.", 3);
                 ElmRegisterException("NoConditionException", 50, "No condition attribute was found in an <If> statement.", 3);
                 ElmRegisterException("TimeoutException", 51, "The operation timed out.", 2);
                 ElmRegisterException("ExceptionFuckedUpInputException", 52, "The id attribute was incorrectly specified in an <Exception> element - letters/strings may have been used.", 3);
@@ -81,6 +82,13 @@ namespace Shell.Core
                 ElmRegisterException("ModuleXmlInvalid", 56, "Fatal error loading module: An error occurred while loading the module's Module.xml.", 3);
                 ElmRegisterException("ModuleXmlInvalidExtends", 57, "Fatal error loading module: An invalid <Extends> node was found in a Module XML Definition File.", 3);
                 ElmRegisterException("ModulesXmlCriticalErrorException", 58, "The Modules.xml file is corrupted.", 4);
+                ElmRegisterException("XmlFileEmptyException", 59, "Failed to get the root node of an XML file, as it is empty.", 2);
+                ElmRegisterException("WhyDidYouCallXmlGetRootNodeWithVerifyTrueAndNoVerifyTextException", 60, "You called XmlGetRootNode with verify on and no text to actually verify. This is quite idiotic. ", 2);
+                ElmRegisterException("VerifyFailedException", 61, "XmlGetRootNode failed to verify the root node's name.", 2);
+                ElmRegisterException("NoChildrenFoundException", 62, "When attempting to get the children of an XML node, or get a child of an XML node, the parent node has no children.", 2);
+                ElmRegisterException("NoXmlElementFoundException", 63, "An XML node, inner text, or attribute could not be found.", 2);
+                ElmRegisterException("XmlExceptionReadingInnerTextException", 64, "An error occurred reading the inner text of an XML node.", 2);
+                ElmRegisterException("UhOhWe'reFuckedException", 65, "Something bad happened and the XML file we were using got screwed up. Exiting for system integrity.", 4);
 
                 ElmInitialized = 1;
                 return;

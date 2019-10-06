@@ -28,7 +28,7 @@ namespace Shell.Test
             {
                 ShellTest.SorryIncompatible();
             }
-            else if (shellcore_ver.ProductMajorPart < 8 & shellcore_ver.ProductBuildPart < 50)
+            else if (shellcore_ver.ProductMajorPart < 8 & shellcore_ver.ProductBuildPart < 87)
             {
                 ShellTest.SorryIncompatible();
             }
@@ -95,6 +95,7 @@ namespace Shell.Test
             ShellCore.CopyFileEx("dummy.tmp", "dummy2.tmp");
             ShellCore.MoveFileEx("dummy2.tmp", "dummy3.tmp");
             ShellCore.CreateFileEx("dummy4.tmp");
+            ShellCore.CreateFolderEx("TestFolder"); // v0.8.7x+
             ShellCore.SetFileHiddenEx("dummy4.tmp"); // v7+
             Console.WriteLine("Now testing ShellUI...");
             ShellUI.UiDrawMultiple('T',8);
@@ -128,6 +129,7 @@ namespace Shell.Test
             ShellCore.DeleteFileEx("dummy2.txt"); // v4+
             ShellCore.DeleteFileEx("dummy3.tmp"); // v4+ 
             ShellCore.DeleteFileEx("dummy4.tmp"); // v4+
+            ShellCore.DeleteFolderEx("TestFolder"); // v8.0.7x+
 
             Console.WriteLine("Testing complete. If it didn't crash or display any exceptions (excluding the test exception triggered, #10001), that means it's all good. Press enter to exit.");
             Console.ReadKey();
@@ -136,7 +138,7 @@ namespace Shell.Test
 
         internal void SorryIncompatible()
         {
-            Console.WriteLine("The Test Application is only compatible with ShellCore 8.0 build 50 and later. If you need to use ShellCore 7.0, use version 1.8.5 of the application. If you need to use the ShellCore 7.0 alpha, use version 1.7.3 of the application. If you need to use ShellCore 5.5, 5.6, 5.7, or 6.0, use version 1.7.2 of the application.");
+            Console.WriteLine("The Test Application is only compatible with ShellCore 8.0 build 87 and later. If you need to use ShellCore 7.0, use version 1.8.5 of the application. If you need to use the ShellCore 7.0 alpha, use version 1.7.3 of the application. If you need to use ShellCore 5.5, 5.6, 5.7, or 6.0, use version 1.7.2 of the application.");
             Console.ReadKey();
             Environment.Exit(0xCCCCCCC);
             return;
