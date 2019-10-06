@@ -92,10 +92,13 @@ namespace Shell
 
             FileVersionInfo shellcore_ver = ShellCore.GetVersion();
             FileVersionInfo shellui_ver = ShellUI.GetVersion();
+            FileVersionInfo shellmodule_ver = ShellModule.GetVersion();
+
             ShellCore.ShlSetWindowTitle($"Shell - core ver {shellcore_ver.FileMajorPart}.{shellcore_ver.FileMinorPart}.{shellcore_ver.FileBuildPart}.{shellcore_ver.FilePrivatePart}.");
 
             Console.WriteLine($"ShellCore Version: {shellcore_ver.FileMajorPart}.{shellcore_ver.FileMinorPart}.{shellcore_ver.FileBuildPart}.{shellcore_ver.FilePrivatePart}");
             Console.WriteLine($"ShellUI Version: {shellui_ver.FileMajorPart}.{shellui_ver.FileMinorPart}.{shellui_ver.FileBuildPart}.{shellui_ver.FilePrivatePart}\n");
+            Console.WriteLine($"ShellModule Version: {shellmodule_ver.FileMajorPart}.{shellmodule_ver.FileMinorPart}.{shellmodule_ver.FileBuildPart}.{shellmodule_ver.FilePrivatePart}\n");
 
             ShellUI.ShXML.XmlParseScript("Whatsyourname.xml");
 

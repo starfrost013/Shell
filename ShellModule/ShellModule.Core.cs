@@ -1,7 +1,9 @@
 ﻿using Shell.Core;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -18,6 +20,19 @@ namespace Shell.Module
             ShellCore = ShlCore;
         }
 
+        public FileVersionInfo GetVersion() // Gets the version.
+        {
+            Assembly ShlModule = Assembly.GetExecutingAssembly();
+            var fileVersionInfo = FileVersionInfo.GetVersionInfo(ShlModule.Location);
+            return fileVersionInfo;
+        }
+
+        public void PrintVersion() // Prints the version. ShellCore 8.0.95+ / ShellModule 1.0.41+
+        {
+            FileVersionInfo version = GetVersion();
+            Console.WriteLine(version.FileVersion);
+
+        }
         public void InstallModule(bool quiet, string uri)
         {
             if (quiet == true)
