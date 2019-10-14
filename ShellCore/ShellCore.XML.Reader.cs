@@ -31,9 +31,9 @@ namespace Shell.Core
                 ElmThrowException(13);
                 return null;
             }
-            catch (XmlException)
+            catch (XmlException ExceptionInformation)
             {
-                ElmThrowException(10);
+                ElmThrowException(10, ExceptionInformation.ToString()); // convert the exception information to a string and throw
                 return null;
             }
 
@@ -54,7 +54,7 @@ namespace Shell.Core
             XmlRootNode = theKids[0];
             foreach (XmlNode node in theKids)
             {
-                while (node.Name == "#comment")
+                while (node.Name == "#comment" | node.Name == "?xml")
                 {
                     XmlRootNode = node.NextSibling;
 

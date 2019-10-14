@@ -6,7 +6,10 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml;
+using System.Xaml;
+
 
 namespace Shell.Module
 {
@@ -33,15 +36,24 @@ namespace Shell.Module
             Console.WriteLine(version.FileVersion);
 
         }
+
         public void InstallModule(bool quiet, string uri)
         {
             if (quiet == true)
             {
                 DownloadModule(uri, "Module.zip");
             }
+            else
+            {
+                ModuleInstaller moduleInstaller = new ModuleInstaller(ShellCore);
+                moduleInstaller.Width = 800; // for some reason it fucks up
+                moduleInstaller.ShowDialog();
+            }
         }
+
         public void DownloadModule(string uri, string path)
         {
+            Console.WriteLine($"Installing module from the Internet @{uri}...");
             ShellCore.DownloadFileEx(uri, path);
             ShellCore.ExtractZipFile("Module.zip", "Modules");
             GetModule();
@@ -52,6 +64,7 @@ namespace Shell.Module
         {
 
             XmlDocument ModuleXml = ShellCore.XmlOpenFile("Modules/Module.xml");
+            Console.WriteLine($"Reading Module XML file...");
             XmlNode moduleRoot = ModuleXml.FirstChild;
             string Name = moduleRoot.Name;
 
@@ -59,7 +72,8 @@ namespace Shell.Module
             {
                 while (Name == "#comment")
                 {
-                    Name = moduleRoot.NextSibling.Name; // get the next node until we have an actual node.
+                    moduleRoot = moduleRoot.NextSibling; // get the next node. 
+                    Name = moduleRoot.Name; // get the next node until we have an actual node.
                 }
             }
 
@@ -93,7 +107,8 @@ namespace Shell.Module
                         Module.Dll = attribute.InnerText;
                         continue;
                     case "Extends": // which dll does this module extend
-                        switch (attribute.Value) 
+                        string trimmedExtends = attribute.InnerText.Trim();
+                        switch (trimmedExtends) 
                         {
                             case "shlcore":
                             case "Shlcore":
@@ -122,39 +137,27 @@ namespace Shell.Module
                                 ShellCore.ElmThrowException(57);
                                 return;
                         }
-                        continue;
                         
 
 
                 }
             }
 
-            try
-            {
-                ModuleXml.Load("Modules.xml"); // shellmodule ss
-            }
-            catch (XmlException)
-            {
-                // error loading xml
-                ShellCore.ElmThrowException(58); // hmm
-            }
-
-            moduleRoot = ModuleXml.FirstChild;
-            Name = moduleRoot.Name;
-
-            if (Name == "#comment")
-            {
-                while (Name == "#comment")
-                {
-                    Name = moduleRoot.NextSibling.Name; // get the next node until we have an actual node.
-                }
-            }
-
-            if (Name != "Modules")
-            {
-                ShellCore.ElmThrowException(58);
-            }
+            Console.WriteLine("Adding to Module List");
+            ModuleXml = ShellCore.XmlOpenFile("Modules.xml");
+            moduleRoot = ShellCore.XmlGetRootNode(ModuleXml, true, "Modules", 58);
+            ModuleXml = ShellCore.XmlAddNode(ModuleXml, moduleRoot, "Module");
+            XmlNode moduleModule = ShellCore.XmlGetNode(moduleRoot, "Module");
+            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Name", Module.Name.Trim());
+            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Author", Module.Author.Trim());
+            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Version", Module.Version.Trim());
+            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Copyright", Module.Copyright.Trim());
+            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Website", Module.Website.Trim());
+            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Dll", Module.Dll.Trim());
+            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Extends", Module.Extends.ToString());
+            ModuleXml = ShellCore.XmlSaveFile(ModuleXml, "Modules.xml");
             ShellCore.DeleteFileEx("Modules/Module.xml");
+            ShellCore.DeleteFileEx("Module.zip");
 
         }
     }

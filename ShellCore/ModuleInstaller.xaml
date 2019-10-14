@@ -1,0 +1,24 @@
+﻿<Window x:Class="Shell.Core.ModuleInstaller"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Shell"
+             mc:Ignorable="d" d:DesignWidth="800" Title="Module Installer" Height="330.982">
+    <Grid Background="Black">
+        <Label x:Name="Label_Module" Content="Module" HorizontalAlignment="Left" Margin="14,0,0,0" VerticalAlignment="Top" Cursor="None" FontSize="36" Height="60" Width="134" Foreground="White"/>
+        <Label x:Name="Label_ModuleInstaller" Content="Installer" HorizontalAlignment="Left" Margin="135,0,0,0" VerticalAlignment="Top" Cursor="None" FontSize="36" Height="60" Width="176" FontFamily="Segoe UI Semibold" Foreground="White"/>
+        <Line X1="0" X2="800" Y1="50" Y2="50" Stroke="White"></Line>
+        <Label x:Name="Label_Installing" Content="Do you wish to install this module?" HorizontalAlignment="Left" Height="43" Margin="14,49,0,0" VerticalAlignment="Top" Width="414" FontSize="24" Foreground="White"/>
+        <Label x:Name="Label_Warning" Content="Warning: Installing insecure modules from over the Internet could expose your computer or Shell installation to threats." HorizontalAlignment="Left" Height="30" Margin="14,82,0,0" VerticalAlignment="Top" Width="727" FontStyle="Italic" Foreground="White" FontSize="14"/>
+        <Label x:Name="Label_Info" Content="Information" HorizontalAlignment="Left" Height="44" Margin="14,106,0,0" VerticalAlignment="Top" Width="134" Foreground="White" FontSize="24"/>
+        <Label x:Name="Label_Info_Name" Content="Name:" HorizontalAlignment="Left" Height="32" Margin="14,137,0,0" VerticalAlignment="Top" Width="60" Foreground="White" FontSize="16"/>
+        <Label x:Name="Label_Info_Author" Content="Author:" HorizontalAlignment="Left" Height="32" Margin="14,155,0,0" VerticalAlignment="Top" Width="60" Foreground="White" FontSize="16"/>
+        <Label x:Name="Label_Info_Description" Content="Description:" HorizontalAlignment="Left" Height="32" Margin="14,173,0,0" VerticalAlignment="Top" Width="96" Foreground="White" FontSize="16"/>
+        <Label x:Name="Label_Info_Copyright" Content="Copyright:" HorizontalAlignment="Left" Height="32" Margin="14,191,0,0" VerticalAlignment="Top" Width="84" Foreground="White" FontSize="16"/>
+        <Button x:Name="Button_Install" Content="Install" HorizontalAlignment="Left" Height="20" Margin="636,270,0,0" VerticalAlignment="Top" Width="64" Background="Black" Foreground="White" Click="Button_Install_Click"/>
+        <Button x:Name="Button_Cancel" Content="Cancel" HorizontalAlignment="Left" Height="20" Margin="718,270,0,0" VerticalAlignment="Top" Width="64" RenderTransformOrigin="0.173,0.622" Foreground="White" Background="#FF040404" Click="Button_Cancel_Click"/>
+
+
+    </Grid>
+</Window>

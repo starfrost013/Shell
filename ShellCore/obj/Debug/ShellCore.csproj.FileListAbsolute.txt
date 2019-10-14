@@ -17,3 +17,8 @@ C:\Users\Cosmo\ShellProject\Shl\ShellCore\obj\Debug\ShellCore.pdb
 C:\Users\Cosmo\ShellProject\Shl\ShellCore\obj\Debug\ShellCore.csprojAssemblyReference.cache
 C:\Users\Cosmo\ShellProject\Shl\ShellCore\obj\Debug\Shell.Debug.resources
 C:\Users\Cosmo\ShellProject\Shl\ShellCore\obj\Debug\ShellCore.csproj.GenerateResource.cache
+C:\Users\Cosmo\ShellProject\Shl\ShellCore\obj\Debug\ModuleInstaller.g.cs
+C:\Users\Cosmo\ShellProject\Shl\ShellCore\obj\Debug\ShellCore_MarkupCompile.cache
+C:\Users\Cosmo\ShellProject\Shl\ShellCore\obj\Debug\ShellCore_MarkupCompile.lref
+C:\Users\Cosmo\ShellProject\Shl\ShellCore\obj\Debug\ModuleInstaller.baml
+C:\Users\Cosmo\ShellProject\Shl\ShellCore\obj\Debug\ShellCore.g.resources

@@ -10,6 +10,9 @@ namespace Shell.Core
 {
     partial class ShellCore
     {
+        //temporary home
+        public bool ModuleInstallationAllowed { get; set; }
+
         public int Debug { get; set; }
 
         public string LogPath { get; set; }

@@ -71,7 +71,7 @@ namespace Shell
                                 ShellCore.Exit(0);
                                 return null;
                             case "installmodule":
-                                ShellModule.InstallModule(true, arg2);
+                                ShellModule.InstallModule(false, arg2);
                                 Console.WriteLine("Module successfully installed. Press any key to exit Shell.");
                                 Console.ReadKey();
                                 return true;

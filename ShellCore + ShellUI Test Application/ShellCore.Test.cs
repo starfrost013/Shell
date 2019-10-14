@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using Shell.Core;
 using Shell.UI;
 
@@ -120,19 +121,30 @@ namespace Shell.Test
             ShellCore.WinDeleteRegValue(Reg, "Test3"); // v7+
             ShellCore.WinDeleteRegKey(RegistryHive.CurrentUser, "ShellTest2"); // v7+
             ShellCore.DownloadFileEx("http://shell.x10.mx/dummy.txt", "dummy2.txt"); // v8.0.62+
-            ShellCore.ElmRegisterExceptionP("ErrorTestException", 10001, "This is a test.", 0); // v4+
-            ShellCore.ElmThrowException(10001); // v4+
+            ShellCore.ElmRegisterExceptionP("ErrorTestException", 3001, "This is a test.", 0); // v4+
+            ShellCore.ElmRegisterExceptionP("ErrorTestException", 3002, "This is a test.", 1); // v4+
+            ShellCore.ElmRegisterExceptionP("ErrorTestException", 3003, "This is a test.", 2); // v4+
+
+            ShellCore.ElmThrowException(3001); // v4+
+            ShellCore.ElmThrowException(3002); // v4+
+            ShellCore.ElmThrowException(3003); // v4+
+
+            XmlDocument XmlTest = ShellCore.XmlCreateFile("Test.xml"); // v8.0.8x+
+            XmlTest = ShellCore.XmlAddNode(XmlTest, "ShellCoreXMLServicesTest", "test");
+            ShellCore.XmlSaveFile(XmlTest, "Test.xml");
 
             // clean up
+
+            Console.WriteLine("Testing complete. If it didn't crash or display any exceptions (excluding the test exceptions triggered, #3001, 3002, and 3003), that means it's all good. Press enter to exit.");
+            Console.ReadKey();
+
             ShellCore.DeleteFileEx("dummy.tmp"); // v4+
             ShellCore.DeleteFileEx("dummy2.tmp"); // v4+
             ShellCore.DeleteFileEx("dummy2.txt"); // v4+
             ShellCore.DeleteFileEx("dummy3.tmp"); // v4+ 
             ShellCore.DeleteFileEx("dummy4.tmp"); // v4+
             ShellCore.DeleteFolderEx("TestFolder"); // v8.0.7x+
-
-            Console.WriteLine("Testing complete. If it didn't crash or display any exceptions (excluding the test exception triggered, #10001), that means it's all good. Press enter to exit.");
-            Console.ReadKey();
+            ShellCore.DeleteFileEx("Test.xml"); // v4/v8.0.94+
             Environment.Exit(0xD15EA5E);
         }
 

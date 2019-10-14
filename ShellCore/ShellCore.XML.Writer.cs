@@ -45,17 +45,24 @@ namespace Shell.Core
             }
         }
 
-		public XmlDocument XmlAddNode(XmlDocument xmlDocument, string name, string text = null) // Adds a node to an XmlDocument.
+        public XmlDocument XmlAddNode(XmlDocument xmlDocument, string name, string text = null) // Adds a node to an XmlDocument.
         {
             XmlNode xmlNode = xmlDocument.CreateElement(name);
-
-			if (text != null)
+            try
             {
-                xmlNode.AppendChild(xmlDocument.CreateTextNode(text));
+                xmlNode = xmlDocument.AppendChild(xmlNode);
+                if (text != null)
+                {
+                    xmlNode.AppendChild(xmlDocument.CreateTextNode(text));
+                }
+                return xmlDocument;
+            }
+            catch (XmlException)
+            {
+                ElmThrowException(71);
+                return null;
             }
 
-            xmlNode = xmlDocument.AppendChild(xmlNode);
-            return xmlDocument;
         }
 
         public XmlDocument XmlAddNode(XmlDocument xmlDocument, XmlNode theNode, string name, string text = null, bool? c72204635772 = null) // Adds a node to an XmlDocument.
@@ -167,6 +174,40 @@ namespace Shell.Core
                 }
             }
             return null;
+        }
+
+        public XmlDocument XmlSaveFile(XmlDocument xmlDocument, string path)
+        {
+            try
+            {
+                DeleteFileEx(path); // this is lazy
+                FileStream fileStream = new FileStream(path , FileMode.Create);
+                xmlDocument.Save(fileStream);
+                return xmlDocument;
+            }
+            catch (FileNotFoundException)
+            {
+                ElmThrowException(31);
+                return null;
+            }
+
+            catch (DirectoryNotFoundException)
+            {
+                ElmThrowException(32);
+                return null; // we failed
+            }
+
+            catch (UnauthorizedAccessException)
+            {
+                ElmThrowException(30);
+                return null;
+            }
+
+            catch (IOException)
+            {
+                ElmThrowException(29);
+                return null;
+            }
         }
 
 

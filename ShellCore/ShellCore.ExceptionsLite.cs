@@ -33,7 +33,7 @@ namespace Shell.Core
                 ElmRegisterException("IncorrectValueFormatException", 7, "An incorrect format was used (for example - letters used in an int-type variable)", 3);
                 ElmRegisterException("ShutdownDialogNotFirstArgumentException", 8, "When executing shutdown, /i must be the first argument. Sorry, blame Microsoft. ", 3); // 0 severity?
                 ElmRegisterException("BackslashNotAllowedException", 9, "The backslash is not allowed in calls to ExecuteFileEx.", 3);
-                ElmRegisterException("IncorrectlyFormattedXmlTagsException", 10, "A ShellXML tag was incorrectly formatted. Tags must begin with <> and end with </>.", 3);
+                ElmRegisterException("IncorrectlyFormattedXmlTagsException", 10, "A ShellXML tag was incorrectly formatted. Tags must begin with <> and end with </>.", 3, true);
                 ElmRegisterException("DuplicateVariableNameException", 11, "Warning: Two variables cannot have the same name. The second variable will be ignored.", 1);
                 ElmRegisterException("UnspecifiedErrorException", 12, "We have literally no idea what happened. Sorry!", 3);
                 ElmRegisterException("ShellXmlFileNotFoundException", 13, "Shell attempted to load a ShellXML file that didn't exist. Specify another path.", 2);
@@ -51,7 +51,7 @@ namespace Shell.Core
                 ElmRegisterException("IfNotReadyException", 25, "<If> statements are not available yet. Please wait until ShellUI v0.5.6.", 0);
                 ElmRegisterException("NoPathAttributeInFunctionException", 26, "There was no path attribute in the Function element.", 3);
                 ElmRegisterException("MessageBoxNoTextException", 27, "No text was specified for a MessageBox when calling WinMsgBox().", 1);
-                ElmRegisterException("MessageBoxNoCaptionException", 28, "No caption/window title was specified for a WinMsgBox().", 0);
+                ElmRegisterException("MessageBoxNoCaptionException", 28, "No caption/window title was specified for a WinMsgBox().", 1);
                 ElmRegisterException("DotNetIoException", 29, ".NET threw an IoException - a file may already exist and you are attempting to create it, move to it, or unzip to it.", 2);
                 ElmRegisterException("UnauthorizedAccessException", 30, "Access to a file was denied when attempting to perform an operation on it.", 2);
                 ElmRegisterException("FileNotFoundException", 31, "The file could not be found.", 2);
@@ -94,6 +94,8 @@ namespace Shell.Core
                 ElmRegisterException("AttributesNoValueException", 68, "No value was given for an attribute when attempting to create it.", 2);
                 ElmRegisterException("AttemptToRemoveNonexistentAttributeException", 69, "XmlRemoveAttribute attempted to remove a nonexistent attribute.", 2);
                 ElmRegisterException("AttemptToRemoveNonexistentNodeException", 70, "XmlRemoveNode attempted to remove, get the text for, or add the text for a nonexistent node.", 2);
+                ElmRegisterException("ErrorAddingNodeException", 71, "An error occurred adding a node to an XmlDocument. Spaces are not allowed.", 2);
+                ElmRegisterException("UriFormatIncorrectException", 72, "When attempting to download a module from the Internet, an invalid URI was supplied.", 3);
 
                 ElmInitialized = 1;
                 return;
@@ -101,7 +103,7 @@ namespace Shell.Core
 
         }
        
-        internal int ElmRegisterException(string exceptionName, int exceptionId, string exceptionMessage, int exceptionSeverity) // internal exception registration (pseudo-constructor for Exception struct)
+        internal int ElmRegisterException(string exceptionName, int exceptionId, string exceptionMessage, int exceptionSeverity, bool showDetailedInformation = false) // internal exception registration (pseudo-constructor for Exception struct)
         {
 
             Exception _ = new Exception(); // create temporary struct object for configuring the exception and then add it to the list and abandon the variable forever, sending it to the orphanage in the process, where it will then proceed to being killed at the hands of the GC. Rip baby variable.
@@ -155,10 +157,17 @@ namespace Shell.Core
             return 2; // invalid exception id
         }
 
-        public int ElmThrowException(int exceptionId) // Throws an exception.
+        public int ElmThrowException(int exceptionId, string detailedInformation = null) // Throws an exception.
         {
             foreach (Exception _ in ExceptionList )
             {
+                if (detailedInformation != null) // Do we want to show .NET error information?
+                {
+                    _.detailedInformation = detailedInformation;
+
+                    Console.WriteLine($"An exception occurred - Detailed Information: {_.detailedInformation}\n\n" );
+                }
+
                 if (_.exceptionId == exceptionId)
                 {
                     // ExceptionsLite 
@@ -172,10 +181,12 @@ namespace Shell.Core
                         case 1:
                             Console.WriteLine($"{_.exceptionName} Warning #{_.exceptionId}: {_.exceptionMessage}. Press Enter to continue.");
                             ShlWriteLog("exceptions.log", $"{_.exceptionName} Warning #{_.exceptionId}: {_.exceptionMessage}.");
+                            Console.Read();
                             return _.exceptionId;
                         case 2:
                             Console.WriteLine($"{_.exceptionName} Error #{_.exceptionId}: {_.exceptionMessage}. Press Enter to continue.");
                             ShlWriteLog("exceptions.log", $"{_.exceptionName} Warning #{_.exceptionId}: {_.exceptionMessage}.");
+                            Console.Read();
                             return _.exceptionId;
                         case 3:
                             Console.WriteLine($"{_.exceptionName} Fatal Error #{_.exceptionId}: {_.exceptionMessage}");
@@ -200,12 +211,13 @@ namespace Shell.Core
         }
 
     }
-    public struct Exception
+    public class Exception
     {
         public string exceptionName { get; set; } // The name of the exception.
         public int exceptionId { get; set; } // The ID of the exception. < 10000 is reserved for the shell.
         public string exceptionMessage { get; set; } // The message of the exception.
-        public int exceptionSeverity { get; set; } // The severity. 0 = return from function with code exceptionId, 1 = exit with exitcode exceptionId.
+        public int exceptionSeverity { get; set; } // The severity. 0 = return from function with code exceptionId, 1 = exit with exitcode exceptionId
+        public string detailedInformation { get; set; } // .NET exception information
     }
     // Oh Shit
 }

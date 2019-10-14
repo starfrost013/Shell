@@ -10,6 +10,7 @@ namespace Shell.Core
 {
     partial class ShellCore 
     {
+        public enum FileIOArgs { VerifyExistence=0, AskUserConsoleOnly, OperationSuccessfulMessage}
 
         public bool CreateFileEx(string path, string initialContent=null, bool verifyThatNotAlreadyExist = false) // Create File for 2.6 and up
         {
@@ -213,6 +214,11 @@ namespace Shell.Core
             catch (WebException)
             {
                 ElmThrowException(54);
+                return false;
+            }
+            catch (UriFormatException)
+            {
+                ElmThrowException(72);
                 return false;
             }
 

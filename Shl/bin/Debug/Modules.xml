@@ -1,7 +1,5 @@
-<!-- Shell Powered -->
-<!-- Master Module installation XML file for Modular Shell Core 8.0.74+ (ShellModule 1.0.24+)
-<!-- Do not use with ShellCore 7.0 or earlier. DO NOT MANUALLY EDIT THIS FILE. Use the Shell Module Installer. -->
-
 <Modules>
-	
+  <!-- Shell Powered -->
+  <!-- Master Module installation XML file for Modular Shell Core 8.0.74+ (ShellModule 1.0.24+) -->
+  <!-- Do not use with ShellCore 7.0 or earlier. DO NOT MANUALLY EDIT THIS FILE. Use the Shell Module Installer. -->
 </Modules>
