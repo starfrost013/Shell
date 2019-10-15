@@ -13,7 +13,7 @@
         <Label x:Name="Label_Warning" Content="Warning: Installing insecure modules from over the Internet could expose your computer or Shell installation to threats." HorizontalAlignment="Left" Height="30" Margin="14,82,0,0" VerticalAlignment="Top" Width="727" FontStyle="Italic" Foreground="White" FontSize="14"/>
         <Label x:Name="Label_Info" Content="Information" HorizontalAlignment="Left" Height="44" Margin="14,106,0,0" VerticalAlignment="Top" Width="134" Foreground="White" FontSize="24"/>
         <Label x:Name="Label_Info_Name" Content="Name:" HorizontalAlignment="Left" Height="32" Margin="14,137,0,0" VerticalAlignment="Top" Width="60" Foreground="White" FontSize="16"/>
-        <Label x:Name="Label_Info_Author" Content="Author:" HorizontalAlignment="Left" Height="32" Margin="14,155,0,0" VerticalAlignment="Top" Width="60" Foreground="White" FontSize="16"/>
+        <Label x:Name="Label_Info_Author" Content="Author:" HorizontalAlignment="Left" Height="32" Margin="14,155,0,0" VerticalAlignment="Top" Width="70" Foreground="White" FontSize="16"/>
         <Label x:Name="Label_Info_Description" Content="Description:" HorizontalAlignment="Left" Height="32" Margin="14,173,0,0" VerticalAlignment="Top" Width="96" Foreground="White" FontSize="16"/>
         <Label x:Name="Label_Info_Copyright" Content="Copyright:" HorizontalAlignment="Left" Height="32" Margin="14,191,0,0" VerticalAlignment="Top" Width="84" Foreground="White" FontSize="16"/>
         <Button x:Name="Button_Install" Content="Install" HorizontalAlignment="Left" Height="20" Margin="636,270,0,0" VerticalAlignment="Top" Width="64" Background="Black" Foreground="White" Click="Button_Install_Click"/>

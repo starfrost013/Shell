@@ -60,7 +60,7 @@ namespace Shell
                         string thearg = args[i];
                         if (args.Length - i > 0)
                         {
-                        arg2 = args[i + 1];
+                            arg2 = args[i + 1];
                         }
                         switch (thearg)
                         {

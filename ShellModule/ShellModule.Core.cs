@@ -41,28 +41,37 @@ namespace Shell.Module
         {
             if (quiet == true)
             {
-                DownloadModule(uri, "Module.zip");
+                Module module = GetModule(uri, "Module.zip");
             }
             else
             {
+                Module module = GetModule(uri, "Module.zip");
                 ModuleInstaller moduleInstaller = new ModuleInstaller(ShellCore);
-                moduleInstaller.Width = 800; // for some reason it fucks up
+                moduleInstaller.Width = 810; // for some reason it fucks up
                 moduleInstaller.ShowDialog();
+
+                if (ShellCore.ModuleInstallationAllowed == true)
+                {
+                    InstallModule(module);
+                }
+                else
+                {
+                    // clean up and return
+                    ShellCore.DeleteFileEx(module.Dll);
+                    ShellCore.DeleteFileEx("Modules/Module.xml");
+                    ShellCore.DeleteFileEx("Module.zip");
+                    return;
+
+                }
             }
         }
 
-        public void DownloadModule(string uri, string path)
+
+        public Module GetModule(string uri, string path)
         {
-            Console.WriteLine($"Installing module from the Internet @{uri}...");
+            Console.WriteLine($"Installing module from the Internet at {uri}..."); // displays a message
             ShellCore.DownloadFileEx(uri, path);
             ShellCore.ExtractZipFile("Module.zip", "Modules");
-            GetModule();
-            return;
-        }
-
-        public void GetModule()
-        {
-
             XmlDocument ModuleXml = ShellCore.XmlOpenFile("Modules/Module.xml");
             Console.WriteLine($"Reading Module XML file...");
             XmlNode moduleRoot = ModuleXml.FirstChild;
@@ -135,30 +144,32 @@ namespace Shell.Module
                                 continue;
                             default:
                                 ShellCore.ElmThrowException(57);
-                                return;
+                                return Module;
                         }
-                        
-
-
                 }
             }
+            return Module;
 
+
+        }
+
+        public void InstallModule(Module module)
+        {
             Console.WriteLine("Adding to Module List");
-            ModuleXml = ShellCore.XmlOpenFile("Modules.xml");
-            moduleRoot = ShellCore.XmlGetRootNode(ModuleXml, true, "Modules", 58);
+            XmlDocument ModuleXml = ShellCore.XmlOpenFile("Modules.xml");
+            XmlNode moduleRoot = ShellCore.XmlGetRootNode(ModuleXml, true, "Modules", 58);
             ModuleXml = ShellCore.XmlAddNode(ModuleXml, moduleRoot, "Module");
             XmlNode moduleModule = ShellCore.XmlGetNode(moduleRoot, "Module");
-            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Name", Module.Name.Trim());
-            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Author", Module.Author.Trim());
-            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Version", Module.Version.Trim());
-            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Copyright", Module.Copyright.Trim());
-            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Website", Module.Website.Trim());
-            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Dll", Module.Dll.Trim());
-            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Extends", Module.Extends.ToString());
+            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Name", module.Name.Trim());
+            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Author", module.Author.Trim());
+            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Version", module.Version.Trim());
+            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Copyright", module.Copyright.Trim());
+            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Website", module.Website.Trim());
+            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Dll", module.Dll.Trim());
+            ModuleXml = ShellCore.XmlAddAttribute(ModuleXml, moduleModule, "Extends", module.Extends.ToString());
             ModuleXml = ShellCore.XmlSaveFile(ModuleXml, "Modules.xml");
             ShellCore.DeleteFileEx("Modules/Module.xml");
             ShellCore.DeleteFileEx("Module.zip");
-
         }
     }
 }
