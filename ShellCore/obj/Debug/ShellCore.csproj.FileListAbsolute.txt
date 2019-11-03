@@ -22,3 +22,4 @@ C:\Users\Cosmo\ShellProject\Shl\ShellCore\obj\Debug\ShellCore_MarkupCompile.cach
 C:\Users\Cosmo\ShellProject\Shl\ShellCore\obj\Debug\ShellCore_MarkupCompile.lref
 C:\Users\Cosmo\ShellProject\Shl\ShellCore\obj\Debug\ModuleInstaller.baml
 C:\Users\Cosmo\ShellProject\Shl\ShellCore\obj\Debug\ShellCore.g.resources
+C:\Users\Cosmo\ShellProject\Shl\ShellCore\obj\Debug\Shell.Properties.Resources.resources

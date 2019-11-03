@@ -28,6 +28,8 @@ namespace Shell.Core
             this.E = Math.E;
             this.C = 299792458;
             this.Debug = 1;
+            this.ShellTaskList = new List<ShellTask>();
+            this.ShellAppManager = new ShellAppManager();
         }
 
         public void ExecuteFileEx(string executePath, List<string> arg)

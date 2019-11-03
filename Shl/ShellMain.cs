@@ -47,6 +47,11 @@ namespace Shell
             ShellCore.ShlWriteLog("Test.txt","test.");
             ShellUI.InitShellUI();
             ShellModule.InitShellModule(ShellCore);
+            ShellTask ShlTask = ShellCore.InitTask(new string[0], "task 1", 400, 150);
+            ShlTask.Run();
+            ShellTask ShlTask2 = ShellCore.InitTask(new string[0], "task 3", 360, 200);
+            ShlTask2.Run();
+
             Console.Clear(); // so we can do stuff
             
 
@@ -87,7 +92,9 @@ namespace Shell
                 return null;
             }
 
-            Console.WriteLine("Shell Development Release");
+            Console.WriteLine("Welcome to Shell\n");
+            Console.WriteLine("Shell Embedded GUI Platform, version 8.0 alpha\n");
+
             Console.WriteLine("DLL Versions:");
 
             FileVersionInfo shellcore_ver = ShellCore.GetVersion();

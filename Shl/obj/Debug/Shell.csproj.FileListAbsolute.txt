@@ -11,3 +11,5 @@ C:\Users\Cosmo\ShellProject\Shl\Shl\bin\Debug\ShellTest.exe.config
 C:\Users\Cosmo\ShellProject\Shl\Shl\bin\Debug\ShellCore.pdb
 C:\Users\Cosmo\ShellProject\Shl\Shl\bin\Debug\ShellModule.pdb
 C:\Users\Cosmo\ShellProject\Shl\Shl\bin\Debug\ShellUI.pdb
+C:\Users\Cosmo\ShellProject\Shl\Shl\obj\Debug\Shl.Properties.Resources.resources
+C:\Users\Cosmo\ShellProject\Shl\Shl\obj\Debug\Shell.csproj.GenerateResource.cache

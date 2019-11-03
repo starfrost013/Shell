@@ -46,7 +46,7 @@ namespace Shell.Module
             else
             {
                 Module module = GetModule(uri, "Module.zip");
-                ModuleInstaller moduleInstaller = new ModuleInstaller(ShellCore);
+                ModuleInstaller moduleInstaller = new ModuleInstaller(ShellCore, module.Name, module.Author, module.Version, module.Copyright);
                 moduleInstaller.Width = 810; // for some reason it fucks up
                 moduleInstaller.ShowDialog();
 
@@ -140,6 +140,7 @@ namespace Shell.Module
                             case "ShellUI":
                             case "shellUi":
                             case "Shellui":
+                            case "shelluI":
                                 Module.Extends = Extends.ShellUI;
                                 continue;
                             default:
@@ -171,5 +172,6 @@ namespace Shell.Module
             ShellCore.DeleteFileEx("Modules/Module.xml");
             ShellCore.DeleteFileEx("Module.zip");
         }
+
     }
 }

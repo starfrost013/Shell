@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Shell.Core
 {
@@ -96,6 +97,7 @@ namespace Shell.Core
                 ElmRegisterException("AttemptToRemoveNonexistentNodeException", 70, "XmlRemoveNode attempted to remove, get the text for, or add the text for a nonexistent node.", 2);
                 ElmRegisterException("ErrorAddingNodeException", 71, "An error occurred adding a node to an XmlDocument. Spaces are not allowed.", 2);
                 ElmRegisterException("UriFormatIncorrectException", 72, "When attempting to download a module from the Internet, an invalid URI was supplied.", 3);
+                ElmRegisterException("NotImplementedException", 73, "A method was unimplemented.", 2);
 
                 ElmInitialized = 1;
                 return;
@@ -175,27 +177,27 @@ namespace Shell.Core
                     switch (_.exceptionSeverity)
                     {
                         case 0:
-                            Console.WriteLine($"{_.exceptionName} #{_.exceptionId}: {_.exceptionMessage}");
+                            WinMsgBox("Shell", $"{_.exceptionName} #{_.exceptionId}:\n {_.exceptionMessage}",MessageBoxButtons.OK,MessageBoxIcon.Error);
                             ShlWriteLog("exceptions.log", $"{_.exceptionName} Warning #{_.exceptionId}: {_.exceptionMessage}.");
                             return _.exceptionId;
                         case 1:
-                            Console.WriteLine($"{_.exceptionName} Warning #{_.exceptionId}: {_.exceptionMessage}. Press Enter to continue.");
+                            WinMsgBox("Shell Warning", $"{_.exceptionName} #{_.exceptionId}:\n {_.exceptionMessage}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             ShlWriteLog("exceptions.log", $"{_.exceptionName} Warning #{_.exceptionId}: {_.exceptionMessage}.");
                             Console.Read();
                             return _.exceptionId;
                         case 2:
-                            Console.WriteLine($"{_.exceptionName} Error #{_.exceptionId}: {_.exceptionMessage}. Press Enter to continue.");
+                            WinMsgBox("Shell Error", $"{_.exceptionName} #{_.exceptionId}:\n {_.exceptionMessage}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             ShlWriteLog("exceptions.log", $"{_.exceptionName} Warning #{_.exceptionId}: {_.exceptionMessage}.");
                             Console.Read();
                             return _.exceptionId;
                         case 3:
-                            Console.WriteLine($"{_.exceptionName} Fatal Error #{_.exceptionId}: {_.exceptionMessage}");
+                            WinMsgBox("Shell Fatal Error", $"{_.exceptionName} #{_.exceptionId}:\n {_.exceptionMessage}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             ShlWriteLog("exceptions.log", $"{_.exceptionName} Warning #{_.exceptionId}: {_.exceptionMessage}.");
                             Console.Read();
                             Environment.Exit(_.exceptionId); // ruh oh
                             break;
                         case 4:
-                            Console.WriteLine($"{_.exceptionName} Catastrophic Error #{_.exceptionId}: {_.exceptionMessage}");
+                            WinMsgBox("Catastrophic Error: Must exit - this is bad!", $"{_.exceptionName} #{_.exceptionId}:\n {_.exceptionMessage}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             ShlWriteLog("exceptions.log", $"{_.exceptionName} Warning #{_.exceptionId}: {_.exceptionMessage}.");
                             Console.Read();
                             Environment.Exit(_.exceptionId); // ruh oh

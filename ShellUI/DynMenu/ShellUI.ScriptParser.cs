@@ -19,7 +19,7 @@ namespace Shell.UI
 
         public int XmlParseScript(string path, int isFunction = 0, int isStatement = 0)
         {
-
+            Console.WriteLine("ShellXML is deprecated\nShell2 coming in Shell Alpha Release\n");
             if (isFunction != 0) // call it 
             {
                 Console.WriteLine($"Parsing ShellXML function at {path}...\n");

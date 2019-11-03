@@ -142,8 +142,6 @@ namespace Shell.Core
             return result;
         }
 
-
-
         public double Power(int x, int y)
         {
             double result = Math.Pow(x,y);
@@ -158,6 +156,11 @@ namespace Shell.Core
             double q2 = r * y;
             List<double> q = new List<double> { q1, q2 };
             return q;
+        }
+
+        public double RoundN(double raw, double n)
+        {
+            return (Math.Round(raw / n)) * n;
         }
     }
 }

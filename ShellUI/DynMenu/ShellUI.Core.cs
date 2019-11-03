@@ -153,6 +153,7 @@ namespace Shell.UI // Dynamic Text UI
 
         public void UiSetWindowSize(int x, int y)
         {
+            Console.WriteLine("Deprecated function");
             if (x < 0 | y < 0)
             {
                 ShellCore.ElmThrowException(46);

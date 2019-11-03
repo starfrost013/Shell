@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Shell2Tokens.cs" />
     <Compile Include="ShellUI.ShxmlException.cs" />
     <Compile Include="ShellUI.ShxmlFunction.cs" />
     <Compile Include="ShellUI.ShxmlConsole.cs" />

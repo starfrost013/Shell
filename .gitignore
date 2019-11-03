@@ -1,1 +1,10 @@
 
+*.baml
+*.ide-shm
+*.ide-wal
+*.lref
+*.lref
+*.cache
+.vs/Shl/v16/.suo
+*.lock
+*.exe

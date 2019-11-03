@@ -53,6 +53,13 @@
     <Compile Include="ModuleInstaller.xaml.cs">
       <DependentUpon>ModuleInstaller.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ShellCore.Interface.ShellModuleInterface.cs" />
+    <Compile Include="ShellCore.Module.cs" />
     <Compile Include="ShellCore.XML.Reader.cs" />
     <Compile Include="ShellCore.Compression.cs" />
     <Compile Include="ShellCore.DebugSettings.cs">
@@ -74,6 +81,10 @@
     <Compile Include="ShellCore.WinRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ShellCore.DebugSettings.resx">
       <DependentUpon>ShellCore.DebugSettings.cs</DependentUpon>
     </EmbeddedResource>
@@ -87,10 +98,16 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ShellCore.AppManagerCore.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ShellCore.AppManagerWpf.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_StartDate="2000/1/1" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" />
+      <UserProperties BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_StartDate="2000/1/1" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

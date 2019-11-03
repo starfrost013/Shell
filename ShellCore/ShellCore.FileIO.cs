@@ -221,6 +221,10 @@ namespace Shell.Core
                 ElmThrowException(72);
                 return false;
             }
+            catch (IOException)
+            {
+                return false; // silent return for ShellModule
+            }
 
         }
         public bool DownloadFileExAsync(string url, string destination)
@@ -235,6 +239,15 @@ namespace Shell.Core
             {
                 ElmThrowException(54);
                 return false;
+            }
+            catch (UriFormatException)
+            {
+                ElmThrowException(72);
+                return false;
+            }
+            catch (IOException)
+            {
+                return false; // silent return for ShellModule
             }
         }
 

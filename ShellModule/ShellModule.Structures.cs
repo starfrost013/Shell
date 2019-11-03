@@ -15,7 +15,7 @@ namespace Shell.Module
         public string Author { get; set; } // The author of the module.
         public string Website { get; set; } // The website of the module.
         public string Dll { get; set; } // The module DLL
-        public Extends Extends { get; set; } // What Shell DLL the module extends.
-
+        public Extends Extends { get; set; } // What Shell DLL the module extends. 
+        public object Mod { get; set; }
     }
 }
